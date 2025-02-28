@@ -13,9 +13,9 @@
   --theme-color-primary--2: #000000;
   --theme-color-primary--3: #ffffff;
   // section
-  --theme-color-primary--1-rgb: #{functions.calc-rgb(var(--theme-color-primary--1))};
-  --theme-color-primary--2-rgb: #{functions.calc-rgb(var(--theme-color-primary--2))};
-  --theme-color-primary--3-rgb: #{functions.calc-rgb(var(--theme-color-primary--3))};
+  --theme-color-primary--1-rgb: #{functions.calc-rgb(#ff4b4b)};
+  --theme-color-primary--2-rgb: #{functions.calc-rgb(#000000)};
+  --theme-color-primary--3-rgb: #{functions.calc-rgb(#ffffff)};
   // section
   --theme-color-secondary--1: #2c68a0;
   --theme-color-secondary--2: #75b4e0;
@@ -23,11 +23,11 @@
   --theme-color-secondary--4: #b50f0f;
   --theme-color-secondary--5: #e2951f;
   // section
-  --theme-color-secondary--1-rgb: #{functions.calc-rgb(var(--theme-color-secondary--1))};
-  --theme-color-secondary--2-rgb: #{functions.calc-rgb(var(--theme-color-secondary--2))};
-  --theme-color-secondary--3-rgb: #{functions.calc-rgb(var(--theme-color-secondary--3))};
-  --theme-color-secondary--4-rgb: #{functions.calc-rgb(var(--theme-color-secondary--4))};
-  --theme-color-secondary--5-rgb: #{functions.calc-rgb(var(--theme-color-secondary--5))};
+  --theme-color-secondary--1-rgb: #{functions.calc-rgb(#2c68a0)};
+  --theme-color-secondary--2-rgb: #{functions.calc-rgb(#75b4e0)};
+  --theme-color-secondary--3-rgb: #{functions.calc-rgb(#2fa61c)};
+  --theme-color-secondary--4-rgb: #{functions.calc-rgb(#b50f0f)};
+  --theme-color-secondary--5-rgb: #{functions.calc-rgb(#e2951f)};
   // section
   --theme-color-gradient--1-0: #000000;
   --theme-color-gradient--1-1: #ffffff;
@@ -39,10 +39,10 @@
   --theme-color-status--error: #b50f0f;
   --theme-color-status--info: #75b4e0;
   // section
-  --theme-color-status--success-rgb: #{functions.calc-rgb(var(--theme-color-status--success))};
-  --theme-color-status--danger-rgb: #{functions.calc-rgb(var(--theme-color-status--danger))};
-  --theme-color-status--error-rgb: #{functions.calc-rgb(var(--theme-color-status--error))};
-  --theme-color-status--info-rgb: #{functions.calc-rgb(var(--theme-color-status--info))};
+  --theme-color-status--success-rgb: #{functions.calc-rgb(#2fa61c)};
+  --theme-color-status--danger-rgb: #{functions.calc-rgb(#e2951f)};
+  --theme-color-status--error-rgb: #{functions.calc-rgb(#b50f0f)};
+  --theme-color-status--info-rgb: #{functions.calc-rgb(#75b4e0)};
   // section
   --theme-color-grayscale--0: #000000;
   --theme-color-grayscale--100: #1a1a1a;
@@ -56,15 +56,15 @@
   --theme-color-grayscale--900: #e6e6e6;
   --theme-color-grayscale--1000: #ffffff;
   // section
-  --theme-color-grayscale--0-rgb: #{functions.calc-rgb(var(--theme-color-grayscale--0))};
-  --theme-color-grayscale--100-rgb: #{functions.calc-rgb(var(--theme-color-grayscale--100))};
-  --theme-color-grayscale--200-rgb: #{functions.calc-rgb(var(--theme-color-grayscale--200))};
-  --theme-color-grayscale--300-rgb: #{functions.calc-rgb(var(--theme-color-grayscale--300))};
-  --theme-color-grayscale--400-rgb: #{functions.calc-rgb(var(--theme-color-grayscale--400))};
-  --theme-color-grayscale--500-rgb: #{functions.calc-rgb(var(--theme-color-grayscale--500))};
-  --theme-color-grayscale--600-rgb: #{functions.calc-rgb(var(--theme-color-grayscale--600))};
-  --theme-color-grayscale--700-rgb: #{functions.calc-rgb(var(--theme-color-grayscale--700))};
-  --theme-color-grayscale--800-rgb: #{functions.calc-rgb(var(--theme-color-grayscale--800))};
-  --theme-color-grayscale--900-rgb: #{functions.calc-rgb(var(--theme-color-grayscale--900))};
-  --theme-color-grayscale--1000-rgb: #{functions.calc-rgb(var(--theme-color-grayscale--1000))};
+  --theme-color-grayscale--0-rgb: #{functions.calc-rgb(#000000)};
+  --theme-color-grayscale--100-rgb: #{functions.calc-rgb(#1a1a1a)};
+  --theme-color-grayscale--200-rgb: #{functions.calc-rgb(#333333)};
+  --theme-color-grayscale--300-rgb: #{functions.calc-rgb(#4d4d4d)};
+  --theme-color-grayscale--400-rgb: #{functions.calc-rgb(#666666)};
+  --theme-color-grayscale--500-rgb: #{functions.calc-rgb(#808080)};
+  --theme-color-grayscale--600-rgb: #{functions.calc-rgb(#999999)};
+  --theme-color-grayscale--700-rgb: #{functions.calc-rgb(#b3b3b3)};
+  --theme-color-grayscale--800-rgb: #{functions.calc-rgb(#cccccc)};
+  --theme-color-grayscale--900-rgb: #{functions.calc-rgb(#e6e6e6)};
+  --theme-color-grayscale--1000-rgb: #{functions.calc-rgb(#ffffff)};
 }
