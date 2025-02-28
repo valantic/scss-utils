@@ -1,22 +1,96 @@
-// Font families
-$font-family--primary: 'Source Sans Pro', 'Trebuchet MS', Arial, sans-serif;
+// Font family
+$va-font-family--headline: var(--theme-font-family--headline);
+$va-font-family--text: var(--theme-font-family--text);
+
+// Font color
+$va-font-color--headline: var(--theme-font-color--headline);
+$va-font-color--text: var(--theme-font-color--text);
 
 // Font weight
-$font-weight--regular: 400;
-$font-weight--semi-bold: 600;
-$font-weight--bold: 700;
+$va-font-weight--light: 200;
+$va-font-weight--regular: 400;
+$va-font-weight--semi-bold: 600;
+$va-font-weight--bold: 700;
+$va-font-weight--heavy: 900;
+
+$va-font-weight: (
+  'light': $va-font-weight--light,
+  'regular': $va-font-weight--regular,
+  'semi-bold': $va-font-weight--semi-bold,
+  'bold': $va-font-weight--bold,
+  'heavy': $va-font-weight--heavy,
+);
 
 // Font size
-$font-size--10: 10px;
-$font-size--12: 12px;
-$font-size--14: 14px;
-$font-size--16: 16px;
-$font-size--18: 18px;
-$font-size--24: 24px;
-$font-size--30: 30px;
+$va-font-size--base: 16px;
+$va-font-size--8: 8px;
+$va-font-size--10: 10px;
+$va-font-size--12: 12px;
+$va-font-size--14: 14px;
+$va-font-size--16: 16px;
+$va-font-size--18: 18px;
+$va-font-size--24: 24px;
+$va-font-size--30: 30px;
+$va-font-size--32: 32px;
+
+// Based on best practices from: https://typescale.com/
+// Font set: large
+// Common use-case: desktop
+$va-font-size-major--third: (
+  'regular': 1rem,
+  'h1': 3.815rem,
+  'h2': 3.052rem,
+  'h3': 2.441rem,
+  'h4': 1.953rem,
+  'h5': 1.563rem,
+  'h6': 1.25rem,
+  'small': 0.8rem,
+  'extra-small': 0.64rem,
+);
+// Common use-case: tablet / phone
+$va-font-size-major--second: (
+  'regular': 1rem,
+  'h1': 2.027rem,
+  'h2': 1.802rem,
+  'h3': 1.602rem,
+  'h4': 1.424rem,
+  'h5': 1.266rem,
+  'h6': 1.125rem,
+  'small': 0.889rem,
+  'extra-small': 0.79rem,
+);
+
+// Font set: large
+// Common use-case: desktop
+$va-font-size-minor--third: (
+  'regular': 1rem,
+  'h1': 2.986rem,
+  'h2': 2.488rem,
+  'h3': 2.074rem,
+  'h4': 1.728rem,
+  'h5': 1.44rem,
+  'h6': 1.2rem,
+  'small': 0.833rem,
+  'extra-small': 0.694rem,
+);
+// Common use-case: tablet / phone
+$va-font-size-minor--second: (
+  'regular': 1rem,
+  'h1': 1.476rem,
+  'h2': 1.383rem,
+  'h3': 1.296rem,
+  'h4': 1.215rem,
+  'h5': 1.138rem,
+  'h6': 1.067rem,
+  'small': 0.937rem,
+  'extra-small': 0.878rem,
+);
 
 // Line height
-$line-height--18: 18px;
-$line-height--20: 20px;
-$line-height--25: 25px;
-$line-height--30: 30px;
+$va-line-height--default: 1.15em;
+$va-line-height--text: 1.45em;
+$va-line-height--headline: 1.15em;
+$va-line-height--18: 18px;
+$va-line-height--20: 20px;
+$va-line-height--25: 25px;
+$va-line-height--30: 30px;

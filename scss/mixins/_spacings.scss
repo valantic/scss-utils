@@ -1,7 +1,7 @@
 @use 'sass:map';
 @use 'sass:list';
 @use '../variables';
-@use '../functions/strip-unit';
+@use '../functions';
 @use './media';
 
 ///
@@ -12,9 +12,9 @@
 /// @param   {list}      [$spacings=$spacings]               The CSS property to which the spacing value should be assigned
 /// @param   {list}      [$breakpoints=$breakpoints]         The CSS property to which the spacing value should be assigned
 ///
-@mixin spacings($class, $property, $spacings: variables.$spacings, $breakpoints: variables.$breakpoints) {
+@mixin spacings($class, $property, $spacings: variables.$va-spacings, $breakpoints: variables.$va-breakpoints) {
   @each $spacing in $spacings {
-    .#{$class}-#{strip-unit.strip-unit($spacing)} {
+    .#{$class}-#{functions.strip-unit($spacing)} {
       #{$property}: #{$spacing};
     }
   }
@@ -32,7 +32,7 @@
         // Don't create a breakpoint related spacing if 0 $spacing and 0 $breakpoint
         @if $breakpointIndex != 1 and $spacingIndex != 1 {
           // stylelint-disable-next-line max-nesting-depth
-          .#{$class}-#{$breakpoint}-#{strip-unit.strip-unit($spacing)} {
+          .#{$class}-#{$breakpoint}-#{functions.strip-unit($spacing)} {
             #{$property}: #{$spacing};
           }
         }

@@ -1,6 +1,14 @@
 // Transition variables in ms
-$transition-duration--100: 100ms;
-$transition-duration--200: 200ms;
-$transition-duration--300: 300ms;
-$transition-duration--500: 500ms;
-$transition-duration--700: 700ms;
+$va-transition-duration--100: 100ms;
+$va-transition-duration--200: 200ms;
+$va-transition-duration--300: 300ms;
+$va-transition-duration--500: 500ms;
+$va-transition-duration--700: 700ms;
+
+$va-transition-duration: (
+  '100': $va-transition-duration--100,
+  '200': $va-transition-duration--200,
+  '300': $va-transition-duration--300,
+  '500': $va-transition-duration--500,
+  '700': $va-transition-duration--700,
+);

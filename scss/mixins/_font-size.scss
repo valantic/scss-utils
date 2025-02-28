@@ -1,5 +1,5 @@
 @use 'sass:math';
-@use '../functions/strip-unit';
+@use '../functions';
 @use '../config';
 
 ////
@@ -9,8 +9,6 @@
 //
 // @returns {font-size}   font-size property with rem value
 ////
-@mixin font-size($size-value: config.$config--font-size) {
-  $browser-default: 16px;
-
-  font-size: (math.div(strip-unit.strip-unit($size-value), strip-unit.strip-unit($browser-default))) + rem;
+@mixin font-size($size-value: config.$va-config--font-size) {
+  font-size: (math.div(functions.strip-unit($size-value), functions.strip-unit(config.$va-config--font-size))) + rem;
 }

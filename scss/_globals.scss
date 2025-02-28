@@ -13,7 +13,7 @@
 }
 
 .wysiwyg {
-  $section-spacing: variables.$spacing--25;
+  $section-spacing: variables.$va-spacing--25;
 
   // Apply top margin for titles if not stacked.
   *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
@@ -28,16 +28,16 @@
   }
 
   a {
-    color: variables.$color-primary--1;
+    color: variables.$va-color-primary--1;
 
     &:hover {
-      color: variables.$color-secondary--1;
+      color: variables.$va-color-secondary--1;
     }
 
     &[disabled],
     &[disabled]:hover,
     &[disabled]:active {
-      color: variables.$color-grayscale--300;
+      color: variables.$va-color-grayscale--300;
     }
   }
 
@@ -51,8 +51,8 @@
   }
 
   hr {
-    margin: variables.$spacing--10 0;
-    border-top: 1px solid variables.$color-grayscale--0;
+    margin: variables.$va-spacing--10 0;
+    border-top: 1px solid variables.$va-color-grayscale--0;
   }
 
   ol {
@@ -64,13 +64,13 @@
       display: table-row;
 
       + li {
-        margin-top: variables.$spacing--5;
+        margin-top: variables.$va-spacing--5;
       }
 
       &::before {
         display: table-cell;
         content: counter(section) '.';
-        padding-right: variables.$spacing--10;
+        padding-right: variables.$va-spacing--10;
         text-align: right;
         counter-increment: section;
       }
@@ -91,13 +91,13 @@
     th,
     td {
       padding: math.div($section-spacing, 4);
-      border: 1px solid variables.$color-grayscale--0;
+      border: 1px solid variables.$va-color-grayscale--0;
     }
   }
 
   ul {
     margin: $section-spacing 0;
-    padding: 0 0 0 variables.$spacing--15;
+    padding: 0 0 0 variables.$va-spacing--15;
 
     li + li {
       margin-top: math.div($section-spacing, 2);

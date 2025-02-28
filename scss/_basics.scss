@@ -1,8 +1,7 @@
 // This file is supposed to set the basic behaviour of native HTML elements.
-// If you want to style a certain element, please use '_elements.scss'.
+// If you want to style a certain element, please use '_setup.scss'.
 // If you want to define global usable classes, please use '_globals.scss'.
 // Please try to keep the content of this file to a minimum.
-
 html,
 body {
   -webkit-font-smoothing: antialiased;

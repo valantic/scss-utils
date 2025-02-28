@@ -1,4 +1,4 @@
 @use './variables';
 
-$config--font-size: variables.$font-size--14;
-$config--line-height: 1.3;
+$va-config--font-size: variables.$va-font-size--base;
+$va-config--line-height: variables.$va-line-height--default;
