@@ -1,0 +1,26 @@
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+.eslintcache
+.stylelintcache
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+/node_modules/
+/dist/
+/tests/unit/coverage/
+
+# Visual Studio Code
+.vscode
+
+# npm
+npm-debug.log
+
+# Project
+.env
+/stats/
+report.*.json

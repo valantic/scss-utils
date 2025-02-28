@@ -1,0 +1,38 @@
+{
+  "name": "styling-template",
+  "version": "0.0.0",
+  "description": "A styling template",
+  "type": "module",
+  "lastDependencyUpdate": "27.02.2025",
+  "scripts": {
+    "clean:caches": "rm -rf .stylelintcache node_modules/.cache",
+    "fix:stylelint": "npm run lint:stylelint -- --cache=false --config .stylelintrc.fix.js --fix",
+    "lint": "npm run lint:stylelint",
+    "lint:stylelint": "stylelint 'src/**/*.?(vue|scss)'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:valantic/styling-template.git"
+  },
+  "engines": {
+    "node": ">=20.10 <21",
+    "npm": ">=10 <11"
+  },
+  "keywords": [
+    "scss",
+    "valantic"
+  ],
+  "author": "valantic CEC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/valantic/styling-template/issues"
+  },
+  "homepage": "https://github.com/valantic/styling-template",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "sass": "~1.85.1",
+    "stylelint": "~16.14.1",
+    "stylelint-config-valantic": "~9.0.0"
+  }
+}
