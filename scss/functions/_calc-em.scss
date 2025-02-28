@@ -10,7 +10,7 @@
 //
 // @returns {list}    Converted pixel values
 ////
-@function calc-em($values, $context: config.$config--font-size) {
+@function calc-em($values, $context: config.$va-config--font-size) {
   $result: ();
 
   @each $value in $values {

@@ -1,32 +1,71 @@
+@use 'sass:map';
 @use '../variables';
-@use './font' as *;
+@use './media';
+
+// Notice, this is an example
+// Update definition for your project.
+%heading-base {
+  font-family: var(--theme-font-family--headline);
+  font-weight: variables.$va-font-weight--heavy;
+  line-height: variables.$va-line-height--headline;
+}
 
 @mixin heading-h1 {
-  // TODO: update definition for project.
-  @include font(variables.$font-size--30);
+  @extend %heading-base;
+
+  font-size: map.get(variables.$va-font-size-major--second, 'h1');
+
+  @include media.media(sm) {
+    font-size: map.get(variables.$va-font-size-major--third, 'h1');
+  }
 }
 
 @mixin heading-h2 {
-  // TODO: update definition for project.
-  @include font(variables.$font-size--24);
+  @extend %heading-base;
+
+  font-size: map.get(variables.$va-font-size-major--second, 'h2');
+
+  @include media.media(sm) {
+    font-size: map.get(variables.$va-font-size-major--third, 'h2');
+  }
 }
 
 @mixin heading-h3 {
-  // TODO: update definition for project.
-  @include font(variables.$font-size--18);
+  @extend %heading-base;
+
+  font-size: map.get(variables.$va-font-size-major--second, 'h3');
+
+  @include media.media(sm) {
+    font-size: map.get(variables.$va-font-size-major--third, 'h3');
+  }
 }
 
 @mixin heading-h4 {
-  // TODO: update definition for project.
-  @include font(variables.$font-size--16);
+  @extend %heading-base;
+
+  font-size: map.get(variables.$va-font-size-major--second, 'h4');
+
+  @include media.media(sm) {
+    font-size: map.get(variables.$va-font-size-major--third, 'h4');
+  }
 }
 
 @mixin heading-h5 {
-  // TODO: update definition for project.
-  @include font(variables.$font-size--14);
+  @extend %heading-base;
+
+  font-size: map.get(variables.$va-font-size-major--second, 'h5');
+
+  @include media.media(sm) {
+    font-size: map.get(variables.$va-font-size-major--third, 'h5');
+  }
 }
 
 @mixin heading-h6 {
-  // TODO: update definition for project.
-  @include font(variables.$font-size--12);
+  @extend %heading-base;
+
+  font-size: map.get(variables.$va-font-size-major--second, 'h6');
+
+  @include media.media(sm) {
+    font-size: map.get(variables.$va-font-size-major--third, 'h6');
+  }
 }
