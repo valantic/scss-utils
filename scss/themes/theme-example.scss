@@ -1,20 +1,22 @@
-.use-theme--example,
-[data-use-theme='EXAMPLE'] {
-  --theme-color-primary--1: #d94f70;
-  --theme-color-primary--2: #1e3d59;
-  --theme-color-primary--3: #f5f5f5;
-  // section
-  --theme-color-secondary--1: #3a5f7d;
-  --theme-color-secondary--2: #87c2d4;
-  --theme-color-secondary--3: #48a048;
-  --theme-color-secondary--4: #c0392b;
-  --theme-color-secondary--5: #f39c12;
-  // section
-  --theme-color-gradient--2-0: #5a92b9;
-  --theme-color-gradient--2-1: #a4d3ee;
-  // section
-  --theme-color-status--success: #33cc33;
-  --theme-color-status--danger: #e67e22;
-  --theme-color-status--error: #c82333;
-  --theme-color-status--info: #7fbfea;
-}
+// Example of a theme partial overwrite
+
+//.use-theme--example,
+//[data-use-theme='EXAMPLE'] {
+//  --theme-color-primary--1: #d94f70;
+//  --theme-color-primary--2: #1e3d59;
+//  --theme-color-primary--3: #f5f5f5;
+//  // section
+//  --theme-color-secondary--1: #3a5f7d;
+//  --theme-color-secondary--2: #87c2d4;
+//  --theme-color-secondary--3: #48a048;
+//  --theme-color-secondary--4: #c0392b;
+//  --theme-color-secondary--5: #f39c12;
+//  // section
+//  --theme-color-gradient--2-0: #5a92b9;
+//  --theme-color-gradient--2-1: #a4d3ee;
+//  // section
+//  --theme-color-status--success: #33cc33;
+//  --theme-color-status--danger: #e67e22;
+//  --theme-color-status--error: #c82333;
+//  --theme-color-status--info: #7fbfea;
+//}
