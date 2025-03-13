@@ -1,6 +1,9 @@
+@use 'sass:map';
 @use 'sass:math';
 @use '../functions';
+@use '../variables';
 @use '../config';
+@use './media';
 
 ////
 // Calculate rem font-size for given pixel value based on base font-size
@@ -11,4 +14,17 @@
 ////
 @mixin font-size($size-value: config.$va-config--font-size) {
   font-size: (math.div(functions.strip-unit($size-value), functions.strip-unit(config.$va-config--font-size))) + rem;
+}
+
+// Returns a font size by a given name.
+@mixin font-size-by-map($keyName: 'regular') {
+  font-size: map.get(variables.$va-font-size--phone, $keyName);
+
+  @include media.media(sm) {
+    font-size: map.get(variables.$va-font-size--tablet, $keyName);
+  }
+
+  @include media.media(md) {
+    font-size: map.get(variables.$va-font-size--desktop, $keyName);
+  }
 }
