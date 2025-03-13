@@ -1,0 +1,6 @@
+// Show browser based input style, if no classes available.
+input:not([class]),
+textarea:not([class]),
+select:not([class]) {
+  all: revert;
+}
