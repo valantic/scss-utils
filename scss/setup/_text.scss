@@ -1,0 +1,64 @@
+mark {
+  padding: 0.1875em;
+  color: var(--theme-font-color--text);
+  background-color: var(--theme-font-color--highlight);
+}
+
+s,
+del {
+  text-decoration: line-through;
+}
+
+u,
+ins {
+  text-decoration: underline;
+}
+
+small {
+  font-size: 0.88rem;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+em {
+  font-style: italic;
+}
+
+abbr {
+  text-decoration: underline dotted;
+  cursor: help;
+  text-decoration-skip-ink: none;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+ol.list-ordered,
+ul.list-unordered {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: 1rem;
+
+  li {
+    margin-bottom: 3px;
+  }
+}
+
+ul.list-unordered {
+  list-style-type: disc;
+}
+
+ol.list-ordered {
+  list-style-type: decimal;
+}
+
+ul.list-inline {
+  display: flex;
+}
