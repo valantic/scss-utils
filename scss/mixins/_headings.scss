@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use '../variables';
-@use './media';
+@use './font-size' as font;
 
 // Notice, this is an example
 // Update definition for your project.
@@ -13,59 +13,35 @@
 @mixin heading-h1 {
   @extend %heading-base;
 
-  font-size: map.get(variables.$va-font-size-major--second, 'h1');
-
-  @include media.media(sm) {
-    font-size: map.get(variables.$va-font-size-major--third, 'h1');
-  }
+  @include font.font-size-by-map('h1');
 }
 
 @mixin heading-h2 {
   @extend %heading-base;
 
-  font-size: map.get(variables.$va-font-size-major--second, 'h2');
-
-  @include media.media(sm) {
-    font-size: map.get(variables.$va-font-size-major--third, 'h2');
-  }
+  @include font.font-size-by-map('h2');
 }
 
 @mixin heading-h3 {
   @extend %heading-base;
 
-  font-size: map.get(variables.$va-font-size-major--second, 'h3');
-
-  @include media.media(sm) {
-    font-size: map.get(variables.$va-font-size-major--third, 'h3');
-  }
+  @include font.font-size-by-map('h3');
 }
 
 @mixin heading-h4 {
   @extend %heading-base;
 
-  font-size: map.get(variables.$va-font-size-major--second, 'h4');
-
-  @include media.media(sm) {
-    font-size: map.get(variables.$va-font-size-major--third, 'h4');
-  }
+  @include font.font-size-by-map('h4');
 }
 
 @mixin heading-h5 {
   @extend %heading-base;
 
-  font-size: map.get(variables.$va-font-size-major--second, 'h5');
-
-  @include media.media(sm) {
-    font-size: map.get(variables.$va-font-size-major--third, 'h5');
-  }
+  @include font.font-size-by-map('h5');
 }
 
 @mixin heading-h6 {
   @extend %heading-base;
 
-  font-size: map.get(variables.$va-font-size-major--second, 'h6');
-
-  @include media.media(sm) {
-    font-size: map.get(variables.$va-font-size-major--third, 'h6');
-  }
+  @include font.font-size-by-map('h6');
 }

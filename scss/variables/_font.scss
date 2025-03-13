@@ -86,6 +86,10 @@ $va-font-size-minor--second: (
   'extra-small': 0.878rem,
 );
 
+$va-font-size--desktop: $va-font-size-major--third;
+$va-font-size--tablet: $va-font-size-minor--third;
+$va-font-size--phone: $va-font-size-major--second;
+
 // Line height
 $va-line-height--default: 1.15em;
 $va-line-height--text: 1.45em;
