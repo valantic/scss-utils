@@ -15,7 +15,7 @@
     "url": "git@github.com:valantic/styling-template.git"
   },
   "engines": {
-    "node": ">=20.10 <21",
+    "node": ">=22 <23",
     "npm": ">=10 <11"
   },
   "keywords": [
