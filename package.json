@@ -1,7 +1,7 @@
 {
-  "name": "styling-template",
+  "name": "@valantic/scss-utils",
   "version": "0.0.0",
-  "description": "A styling template",
+  "description": "A set of reusable scss utils",
   "type": "module",
   "lastDependencyUpdate": "27.02.2025",
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:valantic/styling-template.git"
+    "url": "git@github.com:valantic/scss-utils.git"
   },
   "engines": {
     "node": ">=22 <23",
@@ -25,9 +25,9 @@
   "author": "valantic CEC",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/valantic/styling-template/issues"
+    "url": "https://github.com/valantic/scss-utils/issues"
   },
-  "homepage": "https://github.com/valantic/styling-template",
+  "homepage": "https://github.com/valantic/scss-utils",
   "dependencies": {
   },
   "devDependencies": {
