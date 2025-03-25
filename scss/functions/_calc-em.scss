@@ -1,16 +1,15 @@
 @use 'sass:math';
 @use 'sass:list';
-@use '../config';
 
 ////
 // Calculate em for given pixel $values based on $context font-size
 //
 // @param   {list}    $values       To be converted pixel values
-// @param   {number}  [$context]    Font-size for em calculation
+// @param   {number}  [$context]    Font-size in px for em calculation
 //
 // @returns {list}    Converted pixel values
 ////
-@function calc-em($values, $context: config.$va-config--font-size) {
+@function calc-em($values, $context: 16px) {
   $result: ();
 
   @each $value in $values {
