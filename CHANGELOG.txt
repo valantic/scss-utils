@@ -1,0 +1,5 @@
+# valantic scss utils
+
+## unreleased
+
+- Added container queries.
