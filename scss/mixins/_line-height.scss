@@ -1,14 +1,39 @@
 @use 'sass:math';
+@use 'sass:meta';
 @use '../functions';
 
 ////
-// Calculate unit less line height by given $line-height px value and $font-size px value
-//
-// @param  {number}    [$line-height = $_config--line-height]    Pixel value for desired line height
-// @param  {number}    [$font-size = $_config--font-size]        Pixel value of desired font size
-//
-// @returns   {line-height}   line-height property with unit less value
+/// Calculates a unitless `line-height` value based on the given pixel values for `$line-height` and `$font-size`.
+///
+/// Ensures the ratio between the line height and font size is maintained for better typography scaling.
+///
+/// @param {number} [$line-height=1.15] The desired line height (can be unitless or include a unit like `px`).
+/// @param {number} [$font-size=16px] The font size in pixels (must be greater than 0).
+///
+/// @throws An error if `$line-height` or `$font-size` are not valid numbers, or if `$font-size` is less than or equal to 0.
+///
+/// @example
+/// ```scss
+/// @include line-height(24px, 16px); // Outputs: line-height: 1.5;
+/// @include line-height(1.5, 16px);  // Outputs: line-height: 0.09375;
+/// @include line-height();           // Outputs: line-height: 0.071875;
+/// ```
 ////
 @mixin line-height($line-height: 1.15, $font-size: 16px) {
-  line-height: math.div(functions.strip-unit($line-height), functions.strip-unit($font-size));
+  @if meta.type-of($line-height) != 'number' {
+    @error "@valantic-scss-utils -- 'line-height()': $line-height must be a number. Received: #{meta.type-of($line-height)}.";
+  }
+
+  @if meta.type-of($font-size) != 'number' {
+    @error "@valantic-scss-utils -- 'line-height()': $font-size must be a number. Received: #{meta.type-of($font-size)}.";
+  }
+
+  @if functions.strip-unit($font-size) <= 0 {
+    @error "@valantic-scss-utils -- 'line-height()': $font-size must be greater than 0. Received: #{$font-size}.";
+  }
+
+  $line-height-value: functions.strip-unit($line-height);
+  $font-size-value: functions.strip-unit($font-size);
+
+  line-height: math.div($line-height-value, $font-size-value);
 }

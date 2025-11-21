@@ -1,39 +1,50 @@
 @use 'sass:map';
+@use 'sass:meta';
 @use 'sass:list';
 @use '../variables';
 @use '../functions';
 @use './media';
 
+////
+/// Generates utility classes for spacing values across breakpoints.
 ///
-/// Creates a set of spacings for the given class
+/// - Loops through `$spacings` to create base utility classes.
+/// - Adds responsive classes for each spacing value across valid breakpoints.
+/// - Automatically excludes invalid breakpoints.
 ///
-/// @param   {string}    $class                              The base class to which the spacing value (e.g. "-10") will be attached
-/// @param   {string}    $property                           The CSS property to which the spacing value should be assigned
-/// @param   {list}      [$spacings=$spacings]               The CSS property to which the spacing value should be assigned
-/// @param   {list}      [$breakpoints=$breakpoints]         The CSS property to which the spacing value should be assigned
+/// @param {string} $class The base class name (e.g., `margin`, `padding`).
+/// @param {string} $property The CSS property to assign (e.g., `margin`, `padding`).
+/// @param {list} [$spacings=variables.$va-spacings] The list of spacing values to generate classes for.
+/// @param {map} [$breakpoints=variables.$va-breakpoints] The map of breakpoints used for responsive classes.
 ///
 @mixin spacings($class, $property, $spacings: variables.$va-spacings, $breakpoints: variables.$va-breakpoints) {
+  // Validate inputs
+  @if meta.type-of($spacings) != 'list' {
+    @error "@valantic-scss-utils -- 'spacings': $spacings must be a list. Received: #{meta.type-of($spacings)}.";
+  }
+
+  @if meta.type-of($breakpoints) != 'map' {
+    @error "@valantic-scss-utils -- 'spacings': $breakpoints must be a map. Received: #{meta.type-of($breakpoints)}.";
+  }
+
+  // Generate base utility classes
   @each $spacing in $spacings {
-    .#{$class}-#{functions.strip-unit($spacing)} {
-      #{$property}: #{$spacing};
+    @if $spacing != 0 {
+      .#{$class}-#{functions.strip-unit($spacing)} {
+        #{$property}: #{$spacing};
+      }
     }
   }
 
-  // Loop media queries
-  // NOTE: skipped index 1 (xxs) because it creates invalid query selector.
-  @for $breakpointIndex from 2 through list.length($breakpoints) {
-    $breakpoint: list.nth(map.keys($breakpoints), $breakpointIndex);
-
-    @include media.media($breakpoint) {
-      // Wrapping spacing loop in media() reduces output size
-      @for $spacingIndex from 1 through list.length($spacings) {
-        $spacing: list.nth($spacings, $spacingIndex);
-
-        // Don't create a breakpoint related spacing if 0 $spacing and 0 $breakpoint
-        @if $breakpointIndex != 1 and $spacingIndex != 1 {
-          // stylelint-disable-next-line max-nesting-depth
-          .#{$class}-#{$breakpoint}-#{functions.strip-unit($spacing)} {
-            #{$property}: #{$spacing};
+  // Generate responsive utility classes
+  @each $breakpoint, $value in $breakpoints {
+    @if $value != null and $breakpoint != 'xxs' {
+      @include media.media($breakpoint) {
+        @each $spacing in $spacings {
+          @if $spacing != 0 {
+            .#{$class}-#{$breakpoint}-#{functions.strip-unit($spacing)} {
+              #{$property}: #{$spacing};
+            }
           }
         }
       }

@@ -3,58 +3,70 @@
 @use 'sass:list';
 @use '../variables';
 
+////
+/// Creates a container query based on parent dimensions.
 ///
-/// Creates a container query
+/// Supports both named breakpoints from `$breakpoints` (e.g., `xs`, `sm`) and absolute values (e.g., `768px`).
+/// By default, queries are based on width but can be customized to query other dimensions (e.g., height).
 ///
-/// @param   {string|number}   [$up]           Either a breakpoint identifier (xxs, xs, ...) or an absolute value (with unit)
-/// @param   {string|number}   [$down]         Either a breakpoint identifier (xxs, xs, ...) or an absolute value (with unit)
-/// @param   {Array}           [$breakpoints]  A list of all available breakpoints.
+/// @param {string|number|null} [$up=null] Minimum size for the container query (e.g., `sm` or `768px`).
+/// @param {string|number|null} [$down=null] Maximum size for the container query (e.g., `lg` or `1024px`).
+/// @param {map} [$breakpoints=variables.$va-breakpoints] A map of named breakpoints (e.g., `sm: 768px`).
+/// @param {string} [$dimension=width] The container dimension to query (e.g., `width`, `height`). Defaults to `width`.
 ///
-@mixin container($up: null, $down: null, $breakpoints: variables.$va-breakpoints) {
+/// @throws An error if `$up` or `$down` are invalid values, or `$up` > `$down`.
+///
+/// @example
+/// ```scss
+/// .container {
+///   @include container(sm, lg) {
+///     background: red;
+///   }
+///
+///   @include container(400px, 800px) {
+///     background: blue;
+///   }
+///
+///   @include container(300px, null, variables.$va-breakpoints, height) {
+///     background: green;
+///   }
+/// }
+/// ```
+///
+///
+@mixin container($up: null, $down: null, $breakpoints: variables.$va-breakpoints, $dimension: width) {
+  // Pre-compute query values
+  $upValue: if (meta.type-of($up) == number, $up, map.get($breakpoints, $up));
+  $downValue: if (meta.type-of($down) == number, $down, map.get($breakpoints, $down));
+
+  // Validate inputs
+  @if not $up and not $down {
+    @error "container(): At least one of $up or $down must be defined.";
+  }
+
+  @if $up and not $upValue {
+    @error "container(): Invalid $up value '#{$up}'. Must be a number or a valid breakpoint key.";
+  }
+
+  @if $down and not $downValue {
+    @error "container(): Invalid $down value '#{$down}'. Must be a number or a valid breakpoint key.";
+  }
+
+  @if $upValue and $downValue and $upValue >= $downValue {
+    @error "container(): $up value '#{$upValue}' must be less than $down value '#{$downValue}'.";
+  }
+
+  // Build container query
   $query: '';
-  $indexOfUpBreakpoint: list.index(map.keys($breakpoints), $up);
-  $indexOfDownBreakpoint: list.index(map.keys($breakpoints), $down);
-  $isUpNumber: meta.type-of($up) == number;
-  $isDownNumber: meta.type-of($down) == number;
-  $upKey: if(
-      $down and not($isDownNumber) and $indexOfDownBreakpoint and $indexOfDownBreakpoint < list.length($breakpoints),
-      list.nth(map.keys($breakpoints), $indexOfDownBreakpoint + 1),
-      null
-  );
-  $upValue: if($isUpNumber, $up, false) or map.get($breakpoints, $up);
-  $downValue: if($isDownNumber, $down, false) or ($upKey and map.get($breakpoints, $upKey));
-  $isValidUpValue: if(not($up) or ($up and $upValue), true, false);
-  $isValidDownValue: if(not($down) or ($down and $downValue and $downValue > 0), true, false);
-  $downIsBiggerThanUp: (not($up) or not($down)) or ($isValidUpValue and $isValidDownValue and $upValue < $downValue);
+  @if $up {
+    $query: $query + " (min-#{$dimension}: #{$upValue})";
+  }
+  @if $down {
+    $query: $query + if (meta.type-of($down) == number, " (max-#{$dimension}: #{$downValue})", " (max-#{$dimension}: #{$downValue - 1px})");
+  }
 
-  @if not($isValidUpValue) {
-    @error 'container(): no valid $up value.';
-  } @else if not($isValidDownValue) {
-    @error 'container(): no valid $down value.';
-  } @else if not($downIsBiggerThanUp) {
-    @error 'container(): $up is bigger than $down.';
-  } @else if $up == null and $down == null {
-    @error 'mecontainerdia(): At least one of the parameters MUST be defined ($up, $down).';
-  } @else if $upValue == 0 and $down == null {
-    @error 'container(): The given selector would not define a meaningful scope and should be removed.';
-  } @else {
-    @if $up {
-      @if $upValue != 0 {
-        $query: $query + ' (min-width: #{$upValue})';
-      }
-    }
-
-    @if $down {
-      @if meta.type-of($down) == number {
-        $query: $query + ' (max-width: #{$downValue})';
-      } @else {
-        $query: $query + ' (max-width: #{$downValue - 1px})';
-      }
-    }
-
-    // stylelint-disable-next-line media-query-no-invalid
-    @container #{$query} {
-      @content;
-    }
+  // Apply container query and content
+  @container #{$query} {
+    @content;
   }
 }

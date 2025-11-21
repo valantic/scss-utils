@@ -1,29 +1,47 @@
 @use 'sass:list';
+@use 'sass:meta';
+@use '../variables';
 
 ////
-// Adds the given icon as a background image to the wrapping element.
-//
-// Hint: use 'color' on the element instead of an explicit color for the icon when ever possible.
-//
-// @param  {string}   State the icon
-//
+/// Applies an SVG icon to an element as a background image or mask.
+///
+/// This mixin adds the specified SVG icon as a background image, with optional mask support for modern browsers.
+/// For legacy support, a fallback background image is applied.
+///
+/// **Browser Support:**
+/// - `mask` is supported in modern browsers (Chrome, Edge, Safari).
+/// - Fallback `background` ensures compatibility with legacy browsers.
+///
+/// **Parameters:**
+/// - `$icon`: The name of the SVG icon (string). Required.
+/// - `$size`: The size of the icon (single value or list, e.g., `24px` or `24px 24px`). Defaults to `24px 24px`.
+/// - `$backgroundPosition`: The position of the background image. Defaults to `center center`.
+/// - `$mask`: Whether to apply a mask (boolean). Defaults to `true`.
+/// - `$color`: The color of the icon when using a mask. Defaults to `currentColor`.
+///
+/// @example
+/// ```scss
+/// .icon {
+///   @include icon('arrow-left', 32px, center center, true, red);
+/// }
+/// ```
 ////
-
-// Keep size in sync with e-icon.
 @mixin icon($icon, $size: 24px 24px, $backgroundPosition: center center, $mask: true, $color: currentColor) {
-  $calculatedSize: $size;
-
-  @if list.length($size) == 1 {
-    $calculatedSize: $size $size; // Single values can lead to problems.
+  // Validate $icon
+  @if meta.type-of($icon) != 'string' {
+    @error "@valantic-scss-utils -- 'icon()': $icon must be a string. Received: #{meta.type-of($icon)}.";
   }
 
+  // Ensure $size is always a dual value
+  $calculatedSize: if(meta.type-of($size) == 'number', $size $size, $size);
+
   // Legacy support. No color applied.
-  background: url('../assets/icons.svg##{$icon}') no-repeat $backgroundPosition / $calculatedSize;
+  background: url('#{variables.$va-icon-base-path}##{$icon}') no-repeat $backgroundPosition / $calculatedSize;
 
   @if $mask == true {
     @supports (mask: no-repeat) {
       background: $color;
-      mask: url('../assets/icons.svg##{$icon}') no-repeat $backgroundPosition / $calculatedSize;
+      mask: url('#{variables.$va-icon-base-path}##{$icon}') no-repeat $backgroundPosition / $calculatedSize;
     }
   }
 }

@@ -2,16 +2,25 @@
 @use 'sass:meta';
 
 ////
-// Remove the unit of a length
-//
-// @param {length}    $number   Length to remove unit from
-//
-// @return {number}   Unit less number
-////
+/// Removes the unit from a number.
+///
+/// Supported input types:
+/// - Numbers with units (e.g., `10px`, `5rem`)
+/// - Unitless numbers (e.g., `10`)
+///
+/// Throws an error for non-numeric inputs.
+///
+/// @param {number} $number Length to remove the unit from.
+/// @return {number} Unitless number.
+///
 @function strip-unit($number) {
-  @if meta.type-of($number) == 'number' and not math.is-unitless($number) {
-    @return math.div($number, ($number * 0 + 1));
+  @if meta.type-of($number) != 'number' {
+    @error "@valantic-scss-utils -- 'strip-unit': Expected a number, but got #{meta.type-of($number)}.";
   }
 
-  @return $number;
+  @if math.is-unitless($number) {
+    @return $number;
+  }
+
+  @return math.div($number, ($number * 0 + 1));
 }
