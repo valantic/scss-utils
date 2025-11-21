@@ -1,17 +1,17 @@
 // Font family
-$va-font-family--headline: var(--theme-font-family--headline);
-$va-font-family--text: var(--theme-font-family--text);
+$va-font-family--headline: var(--theme-font-family--headline) !default;
+$va-font-family--text: var(--theme-font-family--text) !default;
 
 // Font color
-$va-font-color--headline: var(--theme-font-color--headline);
-$va-font-color--text: var(--theme-font-color--text);
+$va-font-color--headline: var(--theme-font-color--headline) !default;
+$va-font-color--text: var(--theme-font-color--text) !default;
 
 // Font weight
-$va-font-weight--light: 200;
-$va-font-weight--regular: 400;
-$va-font-weight--semi-bold: 600;
-$va-font-weight--bold: 700;
-$va-font-weight--heavy: 900;
+$va-font-weight--light: 200 !default;
+$va-font-weight--regular: 400 !default;
+$va-font-weight--semi-bold: 600 !default;
+$va-font-weight--bold: 700 !default;
+$va-font-weight--heavy: 900 !default;
 
 $va-font-weight: (
   'light': $va-font-weight--light,
@@ -19,19 +19,19 @@ $va-font-weight: (
   'semi-bold': $va-font-weight--semi-bold,
   'bold': $va-font-weight--bold,
   'heavy': $va-font-weight--heavy,
-);
+) !default;
 
 // Font size
-$va-font-size--base: 16px;
-$va-font-size--8: 8px;
-$va-font-size--10: 10px;
-$va-font-size--12: 12px;
-$va-font-size--14: 14px;
-$va-font-size--16: 16px;
-$va-font-size--18: 18px;
-$va-font-size--24: 24px;
-$va-font-size--30: 30px;
-$va-font-size--32: 32px;
+$va-font-size--base: 16px !default;
+$va-font-size--8: 8px !default;
+$va-font-size--10: 10px !default;
+$va-font-size--12: 12px !default;
+$va-font-size--14: 14px !default;
+$va-font-size--16: 16px !default;
+$va-font-size--18: 18px !default;
+$va-font-size--24: 24px !default;
+$va-font-size--30: 30px !default;
+$va-font-size--32: 32px !default;
 
 // Based on best practices from: https://typescale.com/
 // Font set: large
@@ -46,7 +46,8 @@ $va-font-size-major--third: (
   'h6': 1.25rem,
   'small': 0.8rem,
   'extra-small': 0.64rem,
-);
+) !default;
+
 // Common use-case: tablet / phone
 $va-font-size-major--second: (
   'regular': 1rem,
@@ -58,7 +59,7 @@ $va-font-size-major--second: (
   'h6': 1.125rem,
   'small': 0.889rem,
   'extra-small': 0.79rem,
-);
+) !default;
 
 // Font set: large
 // Common use-case: desktop
@@ -72,7 +73,8 @@ $va-font-size-minor--third: (
   'h6': 1.2rem,
   'small': 0.833rem,
   'extra-small': 0.694rem,
-);
+) !default;
+
 // Common use-case: tablet / phone
 $va-font-size-minor--second: (
   'regular': 1rem,
@@ -84,17 +86,17 @@ $va-font-size-minor--second: (
   'h6': 1.067rem,
   'small': 0.937rem,
   'extra-small': 0.878rem,
-);
+) !default;
 
-$va-font-size--desktop: $va-font-size-major--third;
-$va-font-size--tablet: $va-font-size-minor--third;
-$va-font-size--phone: $va-font-size-major--second;
+$va-font-size--desktop: $va-font-size-major--third !default;
+$va-font-size--tablet: $va-font-size-minor--third !default;
+$va-font-size--phone: $va-font-size-major--second !default;
 
 // Line height
-$va-line-height--default: 1.15em;
-$va-line-height--text: 1.45em;
-$va-line-height--headline: 1.15em;
-$va-line-height--18: 18px;
-$va-line-height--20: 20px;
-$va-line-height--25: 25px;
-$va-line-height--30: 30px;
+$va-line-height--default: 1.15em !default;
+$va-line-height--text: 1.45em !default;
+$va-line-height--headline: 1.15em !default;
+$va-line-height--18: 18px !default;
+$va-line-height--20: 20px !default;
+$va-line-height--25: 25px !default;
+$va-line-height--30: 30px !default;

@@ -1,16 +1,34 @@
 @use 'sass:color';
+@use 'sass:meta';
 
 ////
-// Calculates the rgb value of a HEX value
-//
-// @param   {string}    $hex       hex value
-//
-// @returns {string}    RGB value like "100,100,100"
-////
-@function calc-rgb($hex) {
-  $red: color.channel($hex, 'red', $space: rgb);
-  $green: color.channel($hex, 'green', $space: rgb);
-  $blue: color.channel($hex, 'blue', $space: rgb);
+/// Extracts the RGB channels from a color.
+///
+/// Supports any Sass-compatible color format (e.g., HEX, RGB, HSL).
+///
+/// @param {color} $color A valid Sass color (e.g., `#ff0000`, `rgb(255, 0, 0)`).
+/// @param {string} $output The desired output format: `string` (default) or `list`.
+/// @return {string | list} RGB as a string (e.g., `255, 0, 0`) or a list (`(255, 0, 0)`).
+///
+@function calc-rgb($color, $output: 'string') {
+  // Validate that the input is a color
+  @if meta.type-of($color) != 'color' {
+    @error "@valantic-scss-utils -- 'calc-rgb': Expected a valid color, but got #{meta.type-of($color)}.";
+  }
 
-  @return $red, $green, $blue;
+  $red: color.channel($color, 'red', $space: rgb);
+  $green: color.channel($color, 'green', $space: rgb);
+  $blue: color.channel($color, 'blue', $space: rgb);
+
+  // Default behavior (backward-compatible)
+  @if $output == 'string' {
+    @return $red, $green, $blue;
+  }
+
+  // Optional new behavior
+  @if $output == 'list' {
+    @return ($red, $green, $blue);
+  }
+
+  @error "@valantic-scss-utils -- 'calc-rgb': Unknown output format '#{$output}'. Supported formats are 'string' and 'list'.";
 }

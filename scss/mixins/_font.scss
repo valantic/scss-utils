@@ -1,23 +1,59 @@
+@use 'sass:meta';
 @use './font-size';
 @use './line-height';
 
 ////
-// Calculate font-size, line-height and font-weight by given px values
-//
-// @param  {number}    [$font-size = $_config--font-size]         Pixel value of desired font size
-// @param  {number}    [$line-height = null]                      Pixel value of desired line height
-// @param  {number}    [$font-weight = null]                      Desired font-weight
-//
-// returns  {font-size|line-height|font-weight}   Returns font-size and optional line-height and font-weight
-////
+/// Sets font styles, including font-size, optional line-height, and optional font-weight.
+///
+/// - Delegates font-size and line-height calculations to modular mixins (`font-size` and `line-height`).
+///
+/// @param {number} $font-size The desired font size (with or without units, e.g., `16px` or `16`). Defaults to `16px`.
+/// @param {number|null} [$line-height=null] Optional line height (with or without units, e.g., `1.5`, `24px`). If not provided, no line-height is applied.
+/// @param {number|string|null} [$font-weight=null] Optional font weight (e.g., `400`, `700`, `normal`, `bold`). If not provided, no font-weight is applied.
+///
+/// @throws An error if `$font-size` or `$line-height` are not numeric, or `$font-weight` is not a valid CSS value.
+///
+/// @example
+/// ```scss
+/// .text {
+///   @include font(16px, 1.5, 700); // font-size: 1rem; line-height: 1.5; font-weight: 700;
+/// }
+///
+/// .heading {
+///   @include font(32px, 40px); // font-size: 2rem; line-height: 2.5;
+/// }
+///
+/// .light-text {
+///   @include font(14px, null, 300); // font-size: 0.875rem; font-weight: 300;
+/// }
+/// ```
+///
 @mixin font($font-size: 16px, $line-height: null, $font-weight: null) {
+  // Validate $font-size
+  @if meta.type-of($font-size) != 'number' {
+    @error "@valantic-scss-utils -- 'font()': $font-size must be a number. Received: #{meta.type-of($font-size)}.";
+  }
+
+  // Validate $line-height
+  @if $line-height != null and meta.type-of($line-height) != 'number' {
+    @error "@valantic-scss-utils -- 'font()': $line-height must be a number. Received: #{meta.type-of($line-height)}.";
+  }
+
+  // Validate $font-weight
+  @if $font-weight != null and meta.type-of($font-weight) != 'number' and meta.type-of($font-weight) != 'string' {
+    @error "@valantic-scss-utils -- 'font()': $font-weight must be a number or a string. Received: #{meta.type-of($font-weight)}.";
+  }
+
+  // Apply font-size
   @include font-size.font-size($font-size);
 
-  @if $line-height != null {
+  // Apply line-height if provided
+  @if $line-height {
     @include line-height.line-height($line-height, $font-size);
   }
 
-  @if $font-weight != null {
+  // Apply font-weight if provided
+  @if $font-weight {
     font-weight: $font-weight;
   }
 }

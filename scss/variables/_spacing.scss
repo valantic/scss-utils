@@ -1,24 +1,24 @@
 // Keep variables for better IDE support/auto complete
-$va-spacing--0: 0;
-$va-spacing--1: 1px;
-$va-spacing--2: 2px;
-$va-spacing--5: 5px;
-$va-spacing--10: 10px;
-$va-spacing--15: 15px;
-$va-spacing--20: 20px;
-$va-spacing--25: 25px;
-$va-spacing--30: 30px;
-$va-spacing--35: 35px;
-$va-spacing--40: 40px;
-$va-spacing--45: 45px;
-$va-spacing--50: 50px;
-$va-spacing--55: 55px;
-$va-spacing--60: 60px;
-$va-spacing--70: 70px;
-$va-spacing--80: 80px;
-$va-spacing--90: 90px;
-$va-spacing--100: 100px;
-$va-spacing--200: 200px;
+$va-spacing--0: 0 !default;
+$va-spacing--1: 1px !default;
+$va-spacing--2: 2px !default;
+$va-spacing--5: 5px !default;
+$va-spacing--10: 10px !default;
+$va-spacing--15: 15px !default;
+$va-spacing--20: 20px !default;
+$va-spacing--25: 25px !default;
+$va-spacing--30: 30px !default;
+$va-spacing--35: 35px !default;
+$va-spacing--40: 40px !default;
+$va-spacing--45: 45px !default;
+$va-spacing--50: 50px !default;
+$va-spacing--55: 55px !default;
+$va-spacing--60: 60px !default;
+$va-spacing--70: 70px !default;
+$va-spacing--80: 80px !default;
+$va-spacing--90: 90px !default;
+$va-spacing--100: 100px !default;
+$va-spacing--200: 200px !default;
 
 $va-spacings: (
   $va-spacing--0,
@@ -37,15 +37,15 @@ $va-spacings: (
   $va-spacing--90,
   $va-spacing--100,
   $va-spacing--200
-);
+) !default;
 
 // Modern
-$va-spacing-rem--0: 0;
-$va-spacing-rem--0-25: 0.25rem;
-$va-spacing-rem--0-5: 0.5rem;
-$va-spacing-rem--0-755: 0.75rem;
-$va-spacing-rem--1: 1rem;
-$va-spacing-rem--2: 2rem;
-$va-spacing-rem--3: 3rem;
-$va-spacing-rem--4: 4rem;
-$va-spacing-rem--5: 5rem;
+$va-spacing-rem--0: 0 !default;
+$va-spacing-rem--0-25: 0.25rem !default;
+$va-spacing-rem--0-5: 0.5rem !default;
+$va-spacing-rem--0-755: 0.75rem !default;
+$va-spacing-rem--1: 1rem !default;
+$va-spacing-rem--2: 2rem !default;
+$va-spacing-rem--3: 3rem !default;
+$va-spacing-rem--4: 4rem !default;
+$va-spacing-rem--5: 5rem !default;

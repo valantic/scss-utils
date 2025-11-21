@@ -1,7 +1,8 @@
+@forward './variables/border';
 @forward './variables/breakpoints';
 @forward './variables/color';
-@forward './variables/spacing';
 @forward './variables/font';
-@forward './variables/z-index';
+@forward './variables/general';
+@forward './variables/spacing';
 @forward './variables/transitions';
-@forward './variables/border';
+@forward './variables/z-index';

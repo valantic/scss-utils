@@ -1,15 +1,31 @@
 @use 'sass:math';
+@use 'sass:meta';
 @use 'sass:list';
 
 ////
-// Calculate em for given pixel $values based on $context font-size
-//
-// @param   {list}    $values       To be converted pixel values
-// @param   {number}  [$context]    Font-size in px for em calculation
-//
-// @returns {list}    Converted pixel values
-////
+/// Converts pixel values into em values based on a context font-size.
+///
+/// - Supports both single values and lists of values.
+/// - Assumes that both `$values` and `$context` are in pixels.
+///
+/// @param {list|number} $values A list of pixel values (e.g., `(12px, 16px, 24px)`), or a single value (e.g., `16px`).
+/// @param {number} [$context=16px] The font-size in pixels used for em calculation. Defaults to `16px`.
+///
+/// @return {list} A list of em values corresponding to the input pixel values.
+///
 @function calc-em($values, $context: 16px) {
+  // Validate $context
+  @if meta.type-of($context) != 'number' or not math.unit($context) == 'px' or $context <= 0 {
+    @error "@valantic-scss-utils -- 'calc-em': $context must be a positive number with a 'px' unit. Received: #{$context}.";
+  }
+
+  // Ensure $values is treated as a list (even if it's a single number)
+  @if meta.type-of($values) == 'number' {
+    $values: ($values);
+  } @else if meta.type-of($values) != 'list' {
+    @error "@valantic-scss-utils -- 'calc-em': $values must be a list or a single number. Received: #{meta.type-of($values)}.";
+  }
+
   $result: ();
 
   @each $value in $values {
