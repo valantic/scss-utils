@@ -35,46 +35,60 @@
 /// ```
 ////
 @mixin media($up: null, $down: null, $media: all, $breakpoints: variables.$va-breakpoints) {
-  // Validate inputs
-  $upValue: if ($up, validate-up($up, $breakpoints), null);
-  $downValue: if ($down, validate-down($down, $upValue, $breakpoints), null);
+  // Initialize query with media type
+  $query: if($media == all, 'all', 'only #{$media}');
+  $indexOfUpBreakpoint: list.index(map.keys($breakpoints), $up);
+  $indexOfDownBreakpoint: list.index(map.keys($breakpoints), $down);
+  $isUpNumber: meta.type-of($up) == number;
+  $isDownNumber: meta.type-of($down) == number;
 
-  // Build the query
-  $query: if ($media == all, 'all', 'only #{$media}');
+  // Determine the next breakpoint key for $upKey (if $down is not a number and $up can be derived from $down)
+  $upKey: if(
+      $down and not($isDownNumber) and $indexOfDownBreakpoint and $indexOfDownBreakpoint < list.length($breakpoints),
+      list.nth(map.keys($breakpoints), $indexOfDownBreakpoint + 1),
+      null
+  );
 
-  @if $upValue {
-    $query: $query + ' and (min-width: #{$upValue})';
+  // Calculate $upValue and $downValue
+  $upValue: if($isUpNumber, $up, false) or map.get($breakpoints, $up);
+  $downValue: if($isDownNumber, $down, false) or ($upKey and map.get($breakpoints, $upKey));
+
+  // Validation flags
+  $isValidUpValue: if(not($up) or ($up and $upValue), true, false);
+  $isValidDownValue: if(not($down) or ($down and $downValue and $downValue > 0), true, false);
+  $downIsBiggerThanUp: (not($up) or not($down)) or ($isValidUpValue and $isValidDownValue and $upValue < $downValue);
+
+  // Error handling
+  @if not($isValidUpValue) {
+    @error "media(): Invalid $up value '#{$up}'. Must be a number or a valid breakpoint key.";
+  } @else if not($isValidDownValue) {
+    @error "media(): Invalid $down value '#{$down}'. Must be a number or a valid breakpoint key.";
+  } @else if not($downIsBiggerThanUp) {
+    @error "media(): $up value '#{$upValue}' must be less than $down value '#{$downValue}'.";
+  } @else if $up == null and $down == null and $media == all {
+    @error "media(): At least one of the parameters MUST be defined ($up, $down, $media).";
+  } @else if $upValue == 0 and $down == null and $media == all {
+    @error "media(): The given selector would not define a meaningful scope and should be removed.";
+  } @else {
+    // Construct query for min-width
+    @if $up {
+      @if $upValue != 0 {
+        $query: $query + " and (min-width: #{$upValue})";
+      }
+    }
+
+    // Construct query for max-width
+    @if $down {
+      @if meta.type-of($down) == number {
+        $query: $query + " and (max-width: #{$downValue})";
+      } @else {
+        $query: $query + " and (max-width: #{$downValue - 1px})";
+      }
+    }
+
+    // Output the media query
+    @media #{$query} {
+      @content;
+    }
   }
-
-  @if $downValue {
-    $query: $query + if (meta.type-of($down) == 'number', ' and (max-width: #{$downValue})', ' and (max-width: #{$downValue - 1px})');
-  }
-
-  // Final media query
-  @media #{$query} {
-    @content;
-  }
-}
-
-// Helper functions
-@function validate-up($up, $breakpoints) {
-  $isUpNumber: meta.type-of($up) == 'number';
-  $upValue: if ($isUpNumber, $up, false) or map.get($breakpoints, $up);
-
-  @if not($up) or ($up and $upValue) {
-    @return $upValue;
-  }
-
-  @error "@valantic-scss-utils -- 'media()': Invalid $up value '#{$up}'. Must be a named breakpoint or numeric value.";
-}
-
-@function validate-down($down, $upValue, $breakpoints) {
-  $isDownNumber: meta.type-of($down) == 'number';
-  $downValue: if ($isDownNumber, $down, false) or map.get($breakpoints, $down);
-
-  @if not($down) or ($down and $downValue > $upValue) {
-    @return $downValue;
-  }
-
-  @error "@valantic-scss-utils -- 'media()': Invalid $down value '#{$down}'. Must be greater than $up.";
 }
