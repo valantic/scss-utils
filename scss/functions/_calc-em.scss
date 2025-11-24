@@ -17,17 +17,23 @@
 
   // Validate $context
   @if meta.type-of($context) != 'number' or not math.unit($context) == 'px' or $context <= 0 {
-    @error lib.throw-error('Function: calc-em', "$context must be a positive number with a 'px' unit. Received: #{$context}.");
+    @error lib.throw-error(
+        'Function: calc-em',
+        "'$context' must be a positive number with a 'px' unit.",
+        $context
+    );
   }
 
   // Ensure $values is treated as a list (even if it's a single number)
   @if meta.type-of($values) == 'number' {
     $values: ($values);
   } @else if meta.type-of($values) != 'list' {
-    @error 'yolo';
-    @error lib.throw-error('Function calc-em', "$values must be a list or a single number. Received: #{meta.type-of($values)}.");
-    @error 'test';
-  }
+    @error lib.throw-error(
+        'Function calc-em',
+        "'$values' must be a list or a single number.",
+        meta.type-of($values)
+    );
+}
 
   $result: ();
 
