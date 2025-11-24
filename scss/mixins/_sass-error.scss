@@ -10,28 +10,36 @@
 ///
 /// @return An error string for the output.
 @function throw-error($function-name, $message, $wrong-value) {
-  $errorPrefix: '🚨🚨🚨🚨ERROR: @valantic-scss-utils ==> ';
+  $errorPrefix: '🚨🚨🚨  ERROR: @valantic-scss-utils  🚨🚨🚨::: ';
 
   // Validate inputs
   @if meta.type-of($function-name) != 'string' {
     @return "#{$errorPrefix}" +
-            "Function: throw-error =>>> Property '$function-name' must be a string. " +
-            "Received: #{meta.type-of($function-name)}";
+            "'@function throw-error' " +
+            ">>> Property '$function-name' must be a string. " +
+            ">>> Received: #{meta.type-of($function-name)} " +
+            "<<<";
   }
 
   @if meta.type-of($message) != 'string' {
     @return "#{$errorPrefix}" +
-            "Function: throw-error =>>> Property '$message' must be a string." +
-            "Received: #{meta.type-of($message)}.\n";
+            "Function: throw-error " +
+            ">>> Property '$message' must be a string. " +
+            ">>> Received: #{meta.type-of($message)} " +
+            "<<<";
   }
 
   @if $wrong-value {
     @return "#{$errorPrefix}" +
-            "#{$function-name} =>>> #{$message}" +
-            "Received: #{$wrong-value}.";
+            "#{$function-name} " +
+            ">>> #{$message} " +
+            ">>> Received: #{$wrong-value} " +
+            "<<<";
   }
 
   // Throw the multi-line error
   @return "#{$errorPrefix}" +
-          "#{$function-name} =>>> #{$message}";
+          "#{$function-name} " +
+          ">>> #{$message} " +
+          "<<<";
 }
