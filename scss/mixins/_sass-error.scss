@@ -10,15 +10,18 @@
 ///
 /// @return An error string for the output.
 @function throw-error($function-name, $message) {
+  $errorPrefix: '🚨🚨 SCSS-ERROR: @valantic-scss-utils 🚨🚨 \n';
+
   // Validate inputs
   @if meta.type-of($function-name) != 'string' {
-    @return "====== SCSS-ERROR: @valantic-scss-utils ======\nHelper Function: throw-error\n -- Property $function-name must be a string. Received: #{meta.type-of($function-name)}.\n";
+    @return "#{$errorPrefix} Helper Function: throw-error\n -- Property $function-name must be a string. Received: #{meta.type-of($function-name)}.\n";
   }
 
   @if meta.type-of($message) != 'string' {
-    @return "====== SCSS-ERROR: @valantic-scss-utils ======\nHelper Function: throw-error\n -- Property $message must be a string. Received: #{meta.type-of($message)}.\n";
+    @return "#{$errorPrefix} Helper Function: throw-error\n -- Property $message must be a string. Received: #{meta.type-of($message)}.\n";
   }
 
   // Throw the multi-line error
-  @return "====== SCSS-ERROR: @valantic-scss-utils ======\nTriggerd from: #{$function-name}\n -- #{string.unquote($message)}.\n";
+  @return "#{$errorPrefix}" +
+          "Triggerd from: #{$function-name} \n -- #{string.unquote($message)}. \n";
 }
