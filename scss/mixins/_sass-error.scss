@@ -14,11 +14,13 @@
 
   // Validate inputs
   @if meta.type-of($function-name) != 'string' {
-    @return "#{$errorPrefix} Helper Function: throw-error\n -- Property $function-name must be a string. Received: #{meta.type-of($function-name)}.\n";
+    @return "#{$errorPrefix}" +
+            "Helper Function: throw-error\n -- Property $function-name must be a string. Received: #{meta.type-of($function-name)}.\n";
   }
 
   @if meta.type-of($message) != 'string' {
-    @return "#{$errorPrefix} Helper Function: throw-error\n -- Property $message must be a string. Received: #{meta.type-of($message)}.\n";
+    @return "#{$errorPrefix}" +
+            "Helper Function: throw-error\n -- Property $message must be a string. Received: #{meta.type-of($message)}.\n";
   }
 
   // Throw the multi-line error
