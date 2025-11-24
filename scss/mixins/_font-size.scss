@@ -3,6 +3,7 @@
 @use '../functions';
 @use '../variables';
 @use './media';
+@use '../lib';
 
 /// Converts a pixel value to a rem-based font size.
 ///
@@ -46,15 +47,24 @@
 /// ```
 @mixin font-size-by-map($keyName: 'regular') {
   @if not map.has-key(variables.$va-font-size--phone, $keyName) {
-    @error "@valantic-scss-utils -- 'font-size-by-map()': The key '#{$keyName}' does not exist in the phone font size map.";
+    @error lib.throw-error(
+        '@mixin font-size-by-map',
+        "The key '#{$keyName}' does not exist in the phone font size map."
+    );
   }
 
   @if not map.has-key(variables.$va-font-size--tablet, $keyName) {
-    @error "@valantic-scss-utils -- 'font-size-by-map()': The key '#{$keyName}' does not exist in the tablet font size map.";
+    @error lib.throw-error(
+        '@mixin font-size-by-map',
+        "The key '#{$keyName}' does not exist in the tablet font size map."
+    );
   }
 
   @if not map.has-key(variables.$va-font-size--desktop, $keyName) {
-    @error "@valantic-scss-utils -- 'font-size-by-map()': The key '#{$keyName}' does not exist in the desktop font size map.";
+    @error lib.throw-error(
+        '@mixin font-size-by-map',
+        "The key '#{$keyName}' does not exist in the desktop  font size map."
+    );
   }
 
   font-size: map.get(variables.$va-font-size--phone, $keyName);

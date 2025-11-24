@@ -1,6 +1,7 @@
 @use 'sass:meta';
 @use './font-size';
 @use './line-height';
+@use '../lib';
 
 /// Sets font styles, including font-size, optional line-height, and optional font-weight.
 ///
@@ -29,17 +30,29 @@
 @mixin font($font-size: 16px, $line-height: null, $font-weight: null) {
   // Validate $font-size
   @if meta.type-of($font-size) != 'number' {
-    @error "@valantic-scss-utils -- 'font()': $font-size must be a number. Received: #{meta.type-of($font-size)}.";
+    @error lib.throw-error(
+        '@mixin font',
+        "'$font-size' must be a number.",
+        #{meta.type-of($font-size)}
+    );
   }
 
   // Validate $line-height
   @if $line-height != null and meta.type-of($line-height) != 'number' {
-    @error "@valantic-scss-utils -- 'font()': $line-height must be a number. Received: #{meta.type-of($line-height)}.";
+    @error lib.throw-error(
+        '@mixin font',
+        "'$line-height' must be a number.",
+        #{meta.type-of($line-height)}
+    );
   }
 
   // Validate $font-weight
   @if $font-weight != null and meta.type-of($font-weight) != 'number' and meta.type-of($font-weight) != 'string' {
-    @error "@valantic-scss-utils -- 'font()': $font-weight must be a number or a string. Received: #{meta.type-of($font-weight)}.";
+    @error lib.throw-error(
+        '@mixin font',
+        "'$font-weight' must be a number or a string",
+        #{meta.type-of($font-weight)}
+    );
   }
 
   // Apply font-size

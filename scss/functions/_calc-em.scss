@@ -18,7 +18,7 @@
   // Validate $context
   @if meta.type-of($context) != 'number' or not math.unit($context) == 'px' or $context <= 0 {
     @error lib.throw-error(
-        'Function: calc-em',
+        '@function calc-em',
         "'$context' must be a positive number with a 'px' unit.",
         $context
     );
@@ -29,7 +29,7 @@
     $values: ($values);
   } @else if meta.type-of($values) != 'list' {
     @error lib.throw-error(
-        'Function calc-em',
+        '@function calc-em',
         "'$values' must be a list or a single number.",
         meta.type-of($values)
     );

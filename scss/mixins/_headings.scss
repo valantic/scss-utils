@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use '../variables';
 @use './font-size' as font;
+@use '../lib';
 
 /// Base styles for headings.
 ///
@@ -32,7 +33,10 @@
 /// ```
 @mixin heading($level) {
   @if not ($level == 'h1' or $level == 'h2' or $level == 'h3' or $level == 'h4' or $level == 'h5' or $level == 'h6') {
-    @error "@valantic-scss-utils -- 'heading()': Invalid heading level '#{$level}'. Allowed values are: h1, h2, h3, h4, h5, h6.";
+    @error lib.throw-error(
+        '@mixin heading',
+        "Invalid heading level '#{$level}'. Allowed values are: h1, h2, h3, h4, h5, h6."
+    );
   }
 
   @extend %heading-base;
@@ -45,7 +49,10 @@
 /// These mixins are backward-compatible with the original implementation.
 @each $heading in ('h1', 'h2', 'h3', 'h4', 'h5', 'h6') {
   @mixin heading-#{$heading} {
-    @warn "@valantic-scss-utils -- 'heading()': DEPRECATED heading-#{$heading}() use heading('#{$heading}') instead";
+    @warn lib.throw-error(
+        '@mixin heading',
+        "DEPRECATED heading-#{$heading}() use heading('#{$heading}') instead"
+    );
 
     @include heading($heading);
   }
