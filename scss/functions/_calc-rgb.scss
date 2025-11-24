@@ -1,15 +1,14 @@
 @use 'sass:color';
 @use 'sass:meta';
 
-////
 /// Extracts the RGB channels from a color.
 ///
 /// Supports any Sass-compatible color format (e.g., HEX, RGB, HSL).
 ///
 /// @param {color} $color A valid Sass color (e.g., `#ff0000`, `rgb(255, 0, 0)`).
 /// @param {string} $output The desired output format: `string` (default) or `list`.
-/// @return {string | list} RGB as a string (e.g., `255, 0, 0`) or a list (`(255, 0, 0)`).
 ///
+/// @return {string | list} RGB as a string (e.g., `255, 0, 0`) or a list (`(255, 0, 0)`).
 @function calc-rgb($color, $output: 'string') {
   // Validate that the input is a color
   @if meta.type-of($color) != 'color' {

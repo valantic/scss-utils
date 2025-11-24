@@ -2,8 +2,8 @@
 @use 'sass:meta';
 @use 'sass:list';
 @use '../variables';
+@use '../lib';
 
-////
 /// Creates a container query based on parent dimensions.
 ///
 /// Supports both named breakpoints from `$breakpoints` (e.g., `xs`, `sm`) and absolute values (e.g., `768px`).
@@ -32,8 +32,6 @@
 ///   }
 /// }
 /// ```
-///
-///
 @mixin container($up: null, $down: null, $breakpoints: variables.$va-breakpoints, $dimension: width) {
   // Pre-compute query values
   $upValue: if (meta.type-of($up) == number, $up, map.get($breakpoints, $up));
@@ -41,19 +39,19 @@
 
   // Validate inputs
   @if not $up and not $down {
-    @error "container(): At least one of $up or $down must be defined.";
+    @include lib.throw-error('Mixin container', "At least one of $up or $down must be defined.");
   }
 
   @if $up and not $upValue {
-    @error "container(): Invalid $up value '#{$up}'. Must be a number or a valid breakpoint key.";
+    @include lib.throw-error('Mixin container', "Invalid $up value '#{$up}'. Must be a number or a valid breakpoint key.");
   }
 
   @if $down and not $downValue {
-    @error "container(): Invalid $down value '#{$down}'. Must be a number or a valid breakpoint key.";
+    @include lib.throw-error('Mixin container', "Invalid $down value '#{$down}'. Must be a number or a valid breakpoint key.");
   }
 
   @if $upValue and $downValue and $upValue >= $downValue {
-    @error "container(): $up value '#{$upValue}' must be less than $down value '#{$downValue}'.";
+    @include lib.throw-error('Mixin container', "$up value '#{$upValue}' must be less than $down value '#{$downValue}'.");
   }
 
   // Build container query

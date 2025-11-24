@@ -2,7 +2,6 @@
 @use 'sass:meta';
 @use '../variables';
 
-////
 /// Applies an SVG icon to an element as a background image or mask.
 ///
 /// This mixin adds the specified SVG icon as a background image, with optional mask support for modern browsers.
@@ -25,7 +24,6 @@
 ///   @include icon('arrow-left', 32px, center center, true, red);
 /// }
 /// ```
-////
 @mixin icon($icon, $size: 24px 24px, $backgroundPosition: center center, $mask: true, $color: currentColor) {
   // Validate $icon
   @if meta.type-of($icon) != 'string' {

@@ -2,7 +2,6 @@
 @use 'sass:meta';
 @use '../functions';
 
-////
 /// Truncates multi-line text using `-webkit-line-clamp`.
 ///
 /// This mixin creates styles for limiting text to a specified number of lines, using `-webkit-line-clamp` and `max-height`.
@@ -20,7 +19,6 @@
 ///   @include line-clamp(3, 1.5); // Clamp to 3 lines with line-height of 1.5
 /// }
 /// ```
-////
 @mixin line-clamp($clamp, $line-height: 1) {
   // Validate $clamp
   @if meta.type-of($clamp) != 'number' or functions.strip-unit($clamp) <= 0 or not math.is-unitless($clamp) {
