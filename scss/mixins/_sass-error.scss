@@ -10,7 +10,7 @@
 ///
 /// @return An error string for the output.
 @function throw-error($function-name, $message, $wrong-value) {
-  $errorPrefix: '🚨🚨🚨  ERROR: @valantic-scss-utils  🚨🚨🚨::: ';
+  $errorPrefix: '🚨🚨🚨 ERROR: @valantic-scss-utils 🚨🚨🚨 ::: ';
 
   // Validate inputs
   @if meta.type-of($function-name) != 'string' {
