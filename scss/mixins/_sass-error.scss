@@ -12,7 +12,7 @@
 @function throw-error($function-name, $message) {
   $errorPrefix: '🚨🚨 SCSS-ERROR: @valantic-scss-utils 🚨🚨 \n';
 
-  @debug $errorPrefix;
+  //@debug $errorPrefix;
   @warn $errorPrefix;
 
   // Validate inputs
