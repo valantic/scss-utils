@@ -1,18 +1,53 @@
+@use 'sass:math';
+@use 'sass:meta';
 @use '../functions';
+@use '../lib';
 
-////
-/// Line clampin' (Truncating multiple line text)
-/// @see https://css-tricks.com/line-clampin/
+/// Truncates multi-line text using `-webkit-line-clamp`.
 ///
-/// @param {number} $clamp - Number of lines after text gets cut off.
-/// @param {number} [$line-height = 1] - Desired line height.
+/// This mixin creates styles for limiting text to a specified number of lines, using `-webkit-line-clamp` and `max-height`.
 ///
-////
+/// **Browser Support:** This mixin relies on `-webkit-line-clamp`, which is supported in most modern Webkit-based browsers, including Chrome, Edge, and Safari. It is not supported in Firefox.
+///
+/// @param {number} $clamp The number of lines to display before truncating. Must be a positive, unitless number.
+/// @param {number} [$line-height=1] The line height (unitless or with a unit like `px` or `em`). Must be greater than 0.
+///
+/// @throws An error if `$clamp` or `$line-height` are not valid numbers.
+///
+/// @example
+/// ```scss
+/// .clamped-text {
+///   @include line-clamp(3, 1.5); // Clamp to 3 lines with line-height of 1.5
+/// }
+/// ```
 @mixin line-clamp($clamp, $line-height: 1) {
+  // Validate $clamp
+  @if meta.type-of($clamp) != 'number' or functions.strip-unit($clamp) <= 0 or not math.is-unitless($clamp) {
+    @error lib.throw-error(
+        '@mixin line-clamp',
+        "'$clamp' must be a positive, unitless number.",
+        $clamp
+    );
+  }
+
+  // Validate $line-height
+  @if meta.type-of($line-height) != 'number' or functions.strip-unit($line-height) <= 0 {
+    @error lib.throw-error(
+        '@mixin line-clamp',
+        "'$line-height' must be a positive number.",
+        $line-height
+    );
+  }
+
+  // Precompute stripped values
+  $line-height-value: functions.strip-unit($line-height);
+  $max-height: $clamp * ($line-height-value * 1em);
+
+  // Apply styles
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: $clamp;
-  max-height: $clamp * (functions.strip-unit($line-height) * 1em);
+  max-height: $max-height;
   overflow: hidden;
-  line-height: functions.strip-unit($line-height);
+  line-height: $line-height-value;
 }

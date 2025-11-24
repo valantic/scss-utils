@@ -1,17 +1,30 @@
 @use 'sass:math';
 @use 'sass:meta';
+@use '../lib';
 
-////
-// Remove the unit of a length
-//
-// @param {length}    $number   Length to remove unit from
-//
-// @return {number}   Unit less number
-////
+/// Removes the unit from a number.
+///
+/// Supported input types:
+/// - Numbers with units (e.g., `10px`, `5rem`)
+/// - Unitless numbers (e.g., `10`)
+///
+/// Throws an error for non-numeric inputs.
+///
+/// @param {number} $number Length to remove the unit from.
+///
+/// @return {number} Unitless number.
 @function strip-unit($number) {
-  @if meta.type-of($number) == 'number' and not math.is-unitless($number) {
-    @return math.div($number, ($number * 0 + 1));
+  @if meta.type-of($number) != 'number' {
+    @error lib.throw-error(
+        '@function strip-unit',
+        "Expected a valid number.",
+        #{meta.type-of($number)}
+    );
   }
 
-  @return $number;
+  @if math.is-unitless($number) {
+    @return $number;
+  }
+
+  @return math.div($number, ($number * 0 + 1));
 }

@@ -1,6 +1,31 @@
 @use 'sass:map';
 @use '../variables';
+@use '../lib';
 
+/// Sets the `z-index` based on a key from the `$va-z-index` map in `variables`.
+///
+/// @param {string} $key The key to look up in the `$va-z-index` map.
+///
+/// @throws An error if the key is not found in the map.
+///
+/// @example
+/// ```scss
+/// $va-z-index: (
+///   'modal': 1000,
+///   'tooltip': 1100,
+///   'header': 10
+/// );
+///
+/// @include z-index('modal'); // z-index: 1000;
+/// @include z-index('invalid'); // Throws an error.
+/// ```
 @mixin z-index($key) {
+  @if not map.has-key(variables.$va-z-index, $key) {
+    @error lib.throw-error(
+        '@mixin z-index',
+        "The key '#{$key}' does not exist in the z-index map."
+    );
+  }
+
   z-index: map.get(variables.$va-z-index, $key);
 }

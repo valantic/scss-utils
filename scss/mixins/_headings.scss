@@ -1,47 +1,59 @@
 @use 'sass:map';
 @use '../variables';
 @use './font-size' as font;
+@use '../lib';
 
-// Notice, this is an example
-// Update definition for your project.
+/// Base styles for headings.
+///
+/// This placeholder defines shared styles for all headings,
+/// including font-family, font-weight, and line-height.
 %heading-base {
   font-family: var(--theme-font-family--headline);
   font-weight: variables.$va-font-weight--heavy;
   line-height: variables.$va-line-height--headline;
 }
 
-@mixin heading-h1 {
+/// Dynamically generates heading styles for a given level.
+///
+/// @param {string} $level The heading level (e.g., `h1`, `h2`, `h3`).
+/// @throws An error if an invalid heading level is provided.
+/// @example
+/// ```scss
+/// h1 {
+///   @include heading-h1;
+/// }
+///
+/// h2 {
+///   @include heading-h2;
+/// }
+/// --- or ---
+/// h2 {
+///   @include heading('h2');
+/// }
+/// ```
+@mixin heading($level) {
+  @if not ($level == 'h1' or $level == 'h2' or $level == 'h3' or $level == 'h4' or $level == 'h5' or $level == 'h6') {
+    @error lib.throw-error(
+        '@mixin heading',
+        "Invalid heading level '#{$level}'. Allowed values are: h1, h2, h3, h4, h5, h6."
+    );
+  }
+
   @extend %heading-base;
 
-  @include font.font-size-by-map('h1');
+  @include font.font-size-by-map($level);
 }
 
-@mixin heading-h2 {
-  @extend %heading-base;
+/// @deprecated
+/// Generate specific heading mixins for `h1` through `h6`.
+/// These mixins are backward-compatible with the original implementation.
+@each $heading in ('h1', 'h2', 'h3', 'h4', 'h5', 'h6') {
+  @mixin heading-#{$heading} {
+    @warn lib.throw-error(
+        '@mixin heading',
+        "DEPRECATED heading-#{$heading}() use heading('#{$heading}') instead"
+    );
 
-  @include font.font-size-by-map('h2');
-}
-
-@mixin heading-h3 {
-  @extend %heading-base;
-
-  @include font.font-size-by-map('h3');
-}
-
-@mixin heading-h4 {
-  @extend %heading-base;
-
-  @include font.font-size-by-map('h4');
-}
-
-@mixin heading-h5 {
-  @extend %heading-base;
-
-  @include font.font-size-by-map('h5');
-}
-
-@mixin heading-h6 {
-  @extend %heading-base;
-
-  @include font.font-size-by-map('h6');
+    @include heading($heading);
+  }
 }

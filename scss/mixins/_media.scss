@@ -2,57 +2,105 @@
 @use 'sass:map';
 @use 'sass:list';
 @use '../variables';
+@use '../lib';
 
+/// Creates a media query based on breakpoints or absolute values.
 ///
-/// Creates a media query
+/// - `$up` defines the **minimum width** (inclusive).
+/// - `$down` defines the **maximum width** (exclusive).
+/// - Both `$up` and `$down` can be:
+///     - A named breakpoint from `$breakpoints` (e.g., `md`, `lg`).
+///     - A numeric value with units (e.g., `768px`).
 ///
-/// @param   {string|number}   [$up]           Either a breakpoint identifier (xxs, xs, ...) or an absolute value (with unit)
-/// @param   {string|number}   [$down]         Either a breakpoint identifier (xxs, xs, ...) or an absolute value (with unit)
-/// @param   {string}          [$media=all]    The targeted media
+/// @param {string|number} [$up=null] Minimum width.
+/// @param {string|number} [$down=null] Maximum width.
+/// @param {string} [$media=all] Media type (e.g., `screen`, `print`).
+/// @param {map} [$breakpoints=variables.$va-breakpoints] Breakpoint map.
 ///
+/// @throws Error if invalid `$up` or `$down` values are provided.
+///
+/// @example
+/// ```scss
+/// $va-breakpoints: (
+///   'xs': 480px,
+///   'sm': 768px,
+///   'md': 1024px,
+///   'lg': 1280px
+/// );
+///
+/// // Usage:
+/// @include media('sm', 'lg') { ... } // Between 768px and 1279px.
+/// @include media(null, 'md') { ... } // Up to 1023px.
+/// @include media('lg', null) { ... } // From 1280px.
+/// ```
 @mixin media($up: null, $down: null, $media: all, $breakpoints: variables.$va-breakpoints) {
+  // Initialize query with media type
   $query: if($media == all, 'all', 'only #{$media}');
   $indexOfUpBreakpoint: list.index(map.keys($breakpoints), $up);
   $indexOfDownBreakpoint: list.index(map.keys($breakpoints), $down);
   $isUpNumber: meta.type-of($up) == number;
   $isDownNumber: meta.type-of($down) == number;
+
+  // Determine the next breakpoint key for $upKey (if $down is not a number and $up can be derived from $down)
   $upKey: if(
-    $down and not($isDownNumber) and $indexOfDownBreakpoint and $indexOfDownBreakpoint < list.length($breakpoints),
-    list.nth(map.keys($breakpoints), $indexOfDownBreakpoint + 1),
-    null
+      $down and not($isDownNumber) and $indexOfDownBreakpoint and $indexOfDownBreakpoint < list.length($breakpoints),
+      list.nth(map.keys($breakpoints), $indexOfDownBreakpoint + 1),
+      null
   );
+
+  // Calculate $upValue and $downValue
   $upValue: if($isUpNumber, $up, false) or map.get($breakpoints, $up);
   $downValue: if($isDownNumber, $down, false) or ($upKey and map.get($breakpoints, $upKey));
+
+  // Validation flags
   $isValidUpValue: if(not($up) or ($up and $upValue), true, false);
   $isValidDownValue: if(not($down) or ($down and $downValue and $downValue > 0), true, false);
   $downIsBiggerThanUp: (not($up) or not($down)) or ($isValidUpValue and $isValidDownValue and $upValue < $downValue);
 
+  // Error handling
   @if not($isValidUpValue) {
-    @error 'media(): no valid $up value.';
+    @error lib.throw-error(
+        '@mixin media',
+        "Invalid $up value '#{$up}'. Must be a number or a valid breakpoint key."
+    );
   } @else if not($isValidDownValue) {
-    @error 'media(): no valid $down value.';
+    @error lib.throw-error(
+        '@mixin media',
+        "Invalid $down value '#{$down}'. Must be a number or a valid breakpoint key."
+    );
   } @else if not($downIsBiggerThanUp) {
-    @error 'media(): $up is bigger than $down.';
+    @error lib.throw-error(
+        '@mixin media',
+        "$up value '#{$upValue}' must be less than $down value '#{$downValue}'."
+    );
   } @else if $up == null and $down == null and $media == all {
-    @error 'media(): At least one of the parameters MUST be defined ($up, $down, $media).';
+    @error lib.throw-error(
+        '@mixin media',
+        "At least one of the parameters MUST be defined ($up, $down, $media)."
+    );
   } @else if $upValue == 0 and $down == null and $media == all {
-    @error 'media(): The given selector would not define a meaningful scope and should be removed.';
+    @error lib.throw-error(
+        '@mixin media',
+        "The given selector would not define a meaningful scope and should be removed."
+    );
   } @else {
+    // Construct query for min-width
     @if $up {
       @if $upValue != 0 {
-        $query: $query + ' and (min-width: #{$upValue})';
+        $query: $query + " and (min-width: #{$upValue})";
       }
     }
 
+    // Construct query for max-width
     @if $down {
       @if meta.type-of($down) == number {
-        $query: $query + ' and (max-width: #{$downValue})';
+        $query: $query + " and (max-width: #{$downValue})";
       } @else {
-        $query: $query + ' and (max-width: #{$downValue - 1px})';
+        $query: $query + " and (max-width: #{$downValue - 1px})";
       }
     }
 
-    // stylelint-disable-next-line media-query-no-invalid
+    // Output the media query
     @media #{$query} {
       @content;
     }

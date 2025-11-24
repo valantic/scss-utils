@@ -3,20 +3,70 @@
 @use '../functions';
 @use '../variables';
 @use './media';
+@use '../lib';
 
-////
-// Calculate rem font-size for given pixel value based on base font-size
-//
-// @param  {number}       [$size-value = $_config--font-size]     The target font-size as pixel length
-//
-// @returns {font-size}   font-size property with rem value
-////
+/// Converts a pixel value to a rem-based font size.
+///
+/// @param {number} $size-value The target font size in pixels. Defaults to `16px`.
+/// @param {number} $base-size  The base font size in pixels. Defaults to `16px`.
+/// @throws An error if `$size-value` or `$base-size` are not positive numbers.
+///
+/// @example
+/// ```scss
+/// .text {
+///   @include font-size(32px); // font-size: 2rem;
+/// }
+/// ```
 @mixin font-size($size-value: 16px, $base-size: 16px) {
-  font-size: (math.div(functions.strip-unit($size-value), functions.strip-unit($base-size))) + rem;
+  $size: functions.strip-unit($size-value);
+  $base: functions.strip-unit($base-size);
+
+  font-size: (math.div($size, $base)) + rem;
 }
 
-// Returns a font size by a given name.
+/// Retrieves a responsive font size based on a key from font size maps.
+///
+/// This mixin dynamically assigns font sizes for `phone`, `tablet`, and `desktop`
+/// breakpoints based on a `$keyName`.
+///
+/// **Maps:**
+/// - `$va-font-size--phone`: Font sizes for phones.
+/// - `$va-font-size--tablet`: Font sizes for tablets.
+/// - `$va-font-size--desktop`: Font sizes for desktops.
+///
+/// @param {string} $keyName The key to fetch the font size (e.g., `'regular'`).
+/// @param {list} [$breakpoints=(sm, md)] Configurable breakpoints for responsive font sizes.
+///
+/// @throws An error if `$keyName` does not exist in the font size maps.
+///
+/// @example
+/// ```scss
+/// .heading {
+///   @include font-size-by-map('h1');
+/// }
+/// ```
 @mixin font-size-by-map($keyName: 'regular') {
+  @if not map.has-key(variables.$va-font-size--phone, $keyName) {
+    @error lib.throw-error(
+        '@mixin font-size-by-map',
+        "The key '#{$keyName}' does not exist in the phone font size map."
+    );
+  }
+
+  @if not map.has-key(variables.$va-font-size--tablet, $keyName) {
+    @error lib.throw-error(
+        '@mixin font-size-by-map',
+        "The key '#{$keyName}' does not exist in the tablet font size map."
+    );
+  }
+
+  @if not map.has-key(variables.$va-font-size--desktop, $keyName) {
+    @error lib.throw-error(
+        '@mixin font-size-by-map',
+        "The key '#{$keyName}' does not exist in the desktop  font size map."
+    );
+  }
+
   font-size: map.get(variables.$va-font-size--phone, $keyName);
 
   @include media.media(sm) {

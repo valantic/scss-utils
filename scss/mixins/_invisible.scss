@@ -1,9 +1,24 @@
+/// Hides elements visually while keeping them accessible to screen readers.
+///
+/// This mixin uses techniques such as `clip-path`, `clip`, `overflow: hidden`, and `white-space: nowrap`
+/// to hide elements from visual rendering without removing them from the accessibility tree.
+///
+/// **Browser Support:**
+/// - The `clip-path` property is supported in modern browsers.
+/// - The `clip` property is included for backward compatibility with older browsers.
+///
+/// @example
+/// ```scss
+/// .skip-link {
+///   @include invisible;
+/// }
+/// ```
 @mixin invisible {
   position: absolute;
   width: 1px;
   height: 1px;
   overflow: hidden;
   white-space: nowrap;
-  clip: rect(0 0 0 0);
+  clip: rect(0 0 0 0); // Deprecated but retained for backward compatibility
   clip-path: inset(50%);
 }
