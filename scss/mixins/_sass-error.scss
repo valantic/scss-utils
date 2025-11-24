@@ -12,7 +12,8 @@
 @function throw-error($function-name, $message) {
   $errorPrefix: '🚨🚨 SCSS-ERROR: @valantic-scss-utils 🚨🚨 \n';
 
-  @error $errorPrefix;
+  @debug $errorPrefix;
+  @warn $errorPrefix;
 
   // Validate inputs
   @if meta.type-of($function-name) != 'string' {
