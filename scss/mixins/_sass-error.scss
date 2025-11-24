@@ -1,0 +1,45 @@
+@use 'sass:meta';
+@use 'sass:string';
+
+/// Utility for consistent, multi-line error handling.
+///
+/// Prefixes errors with `@valantic-scss-utils` and includes structured formatting.
+///
+/// @param {string} $function-name The name of the function or mixin throwing the error.
+/// @param {string} $message The error message to display.
+///
+/// @return An error string for the output.
+@function throw-error($function-name, $message, $wrong-value) {
+  $errorPrefix: '🚨🚨🚨 ERROR: @valantic-scss-utils 🚨🚨🚨 ::: ';
+
+  // Validate inputs
+  @if meta.type-of($function-name) != 'string' {
+    @return "#{$errorPrefix}" +
+            "'@function throw-error' " +
+            ">>> Property '$function-name' must be a string. " +
+            ">>> Received: #{meta.type-of($function-name)} " +
+            "<<<";
+  }
+
+  @if meta.type-of($message) != 'string' {
+    @return "#{$errorPrefix}" +
+            "Function: throw-error " +
+            ">>> Property '$message' must be a string. " +
+            ">>> Received: #{meta.type-of($message)} " +
+            "<<<";
+  }
+
+  @if $wrong-value {
+    @return "#{$errorPrefix}" +
+            "#{$function-name} " +
+            ">>> #{$message} " +
+            ">>> Received: #{$wrong-value} " +
+            "<<<";
+  }
+
+  // Throw the multi-line error
+  @return "#{$errorPrefix}" +
+          "#{$function-name} " +
+          ">>> #{$message} " +
+          "<<<";
+}

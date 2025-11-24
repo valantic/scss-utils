@@ -1,10 +1,13 @@
 {
   "name": "@valantic/scss-utils",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A set of reusable scss utils",
   "type": "module",
   "lastDependencyUpdate": "01.10.2025",
   "scripts": {
+    "release": "npm version patch -m 'Release %s' && git push --follow-tags",
+    "release:minor": "npm version minor -m 'Release %s' && git push --follow-tags",
+    "release:major": "npm version major -m 'Release %s' && git push --follow-tags",
     "clean:caches": "rm -rf .stylelintcache node_modules/.cache",
     "fix:stylelint": "npm run lint:stylelint -- --cache=false --config .stylelintrc.fix.js --fix",
     "lint": "npm run lint:stylelint",

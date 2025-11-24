@@ -1,6 +1,5 @@
 /* stylelint-disable selector-class-pattern, selector-max-id */
 // This file is supposed to only hold styles, that are scoped by a globally used class.
-@use 'sass:math';
 @use './mixins';
 @use './variables';
 
@@ -62,18 +61,18 @@
 
     li {
       display: table-row;
+    }
 
-      + li {
-        margin-top: variables.$va-spacing--5;
-      }
+    li + li {
+      margin-top: variables.$va-spacing--5;
+    }
 
-      &::before {
-        display: table-cell;
-        content: counter(section) '.';
-        padding-right: variables.$va-spacing--10;
-        text-align: right;
-        counter-increment: section;
-      }
+    li::before {
+      display: table-cell;
+      content: counter(section) '.';
+      padding-right: variables.$va-spacing--10;
+      text-align: right;
+      counter-increment: section;
     }
   }
 
@@ -90,7 +89,7 @@
 
     th,
     td {
-      padding: math.div($section-spacing, 4);
+      padding: variables.$va-spacing--5;
       border: 1px solid variables.$va-color-grayscale--0;
     }
   }
@@ -100,7 +99,7 @@
     padding: 0 0 0 variables.$va-spacing--15;
 
     li + li {
-      margin-top: math.div($section-spacing, 2);
+      margin-top: variables.$va-spacing--15;
     }
   }
 

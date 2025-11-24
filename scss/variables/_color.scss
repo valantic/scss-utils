@@ -1,15 +1,15 @@
 // Greyscale
-$va-color-grayscale--0: var(--theme-color-grayscale--0);
-$va-color-grayscale--100: var(--theme-color-grayscale--100);
-$va-color-grayscale--200: var(--theme-color-grayscale--200);
-$va-color-grayscale--300: var(--theme-color-grayscale--300);
-$va-color-grayscale--400: var(--theme-color-grayscale--400);
-$va-color-grayscale--500: var(--theme-color-grayscale--500);
-$va-color-grayscale--600: var(--theme-color-grayscale--600);
-$va-color-grayscale--700: var(--theme-color-grayscale--700);
-$va-color-grayscale--800: var(--theme-color-grayscale--800);
-$va-color-grayscale--900: var(--theme-color-grayscale--900);
-$va-color-grayscale--1000: var(--theme-color-grayscale--1000);
+$va-color-grayscale--0: var(--theme-color-grayscale--0) !default;
+$va-color-grayscale--100: var(--theme-color-grayscale--100) !default;
+$va-color-grayscale--200: var(--theme-color-grayscale--200) !default;
+$va-color-grayscale--300: var(--theme-color-grayscale--300) !default;
+$va-color-grayscale--400: var(--theme-color-grayscale--400) !default;
+$va-color-grayscale--500: var(--theme-color-grayscale--500) !default;
+$va-color-grayscale--600: var(--theme-color-grayscale--600) !default;
+$va-color-grayscale--700: var(--theme-color-grayscale--700) !default;
+$va-color-grayscale--800: var(--theme-color-grayscale--800) !default;
+$va-color-grayscale--900: var(--theme-color-grayscale--900) !default;
+$va-color-grayscale--1000: var(--theme-color-grayscale--1000) !default;
 
 $va-color-greyscale: (
   '0': $va-color-grayscale--0,
@@ -23,25 +23,25 @@ $va-color-greyscale: (
   '800': $va-color-grayscale--800,
   '900': $va-color-grayscale--900,
   '1000': $va-color-grayscale--1000,
-);
+) !default;
 
 // Primary
-$va-color-primary--1: var(--theme-color-primary--1);
-$va-color-primary--2: var(--theme-color-primary--2);
-$va-color-primary--3: var(--theme-color-primary--3);
+$va-color-primary--1: var(--theme-color-primary--1) !default;
+$va-color-primary--2: var(--theme-color-primary--2) !default;
+$va-color-primary--3: var(--theme-color-primary--3) !default;
 
 $va-color-primary: (
   '1': $va-color-primary--1,
   '2': $va-color-primary--2,
   '3': $va-color-primary--3,
-);
+) !default;
 
 // Secondary
-$va-color-secondary--1: var(--theme-color-secondary--1);
-$va-color-secondary--2: var(--theme-color-secondary--2);
-$va-color-secondary--3: var(--theme-color-secondary--3);
-$va-color-secondary--4: var(--theme-color-secondary--4);
-$va-color-secondary--5: var(--theme-color-secondary--5);
+$va-color-secondary--1: var(--theme-color-secondary--1) !default;
+$va-color-secondary--2: var(--theme-color-secondary--2) !default;
+$va-color-secondary--3: var(--theme-color-secondary--3) !default;
+$va-color-secondary--4: var(--theme-color-secondary--4) !default;
+$va-color-secondary--5: var(--theme-color-secondary--5) !default;
 
 $va-color-secondary: (
   '1': $va-color-secondary--1,
@@ -49,30 +49,30 @@ $va-color-secondary: (
   '3': $va-color-secondary--3,
   '4': $va-color-secondary--4,
   '5': $va-color-secondary--5,
-);
+) !default;
 
 // Status
-$va-color-status--success: var(--theme-color-status--success);
-$va-color-status--danger: var(--theme-color-status--danger);
-$va-color-status--error: var(--theme-color-status--error);
-$va-color-status--info: var(--theme-color-status--info);
+$va-color-status--success: var(--theme-color-status--success) !default;
+$va-color-status--danger: var(--theme-color-status--danger) !default;
+$va-color-status--error: var(--theme-color-status--error) !default;
+$va-color-status--info: var(--theme-color-status--info) !default;
 
 $va-color-status: (
   'success': $va-color-status--success,
   'danger': $va-color-status--danger,
   'error': $va-color-status--error,
   'info': $va-color-status--info,
-);
+) !default;
 
 // Gradients
-$va-color-gradient--1-0: var(--theme-color-gradient--1-0);
-$va-color-gradient--1-1: var(--theme-color-gradient--1-1);
-$va-color-gradient--2-0: var(--theme-color-gradient--2-0);
-$va-color-gradient--2-1: var(--theme-color-gradient--2-1);
+$va-color-gradient--1-0: var(--theme-color-gradient--1-0) !default;
+$va-color-gradient--1-1: var(--theme-color-gradient--1-1) !default;
+$va-color-gradient--2-0: var(--theme-color-gradient--2-0) !default;
+$va-color-gradient--2-1: var(--theme-color-gradient--2-1) !default;
 
 $va-color-gradient: (
   '1-0': $va-color-gradient--1-0,
   '1-1': $va-color-gradient--1-1,
   '2-0': $va-color-gradient--2-0,
   '2-1': $va-color-gradient--2-1,
-);
+) !default;
