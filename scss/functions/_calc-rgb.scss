@@ -1,5 +1,6 @@
 @use 'sass:color';
 @use 'sass:meta';
+@use '../lib';
 
 /// Extracts the RGB channels from a color.
 ///
@@ -12,7 +13,11 @@
 @function calc-rgb($color, $output: 'string') {
   // Validate that the input is a color
   @if meta.type-of($color) != 'color' {
-    @error "@valantic-scss-utils -- 'calc-rgb': Expected a valid color, but got #{meta.type-of($color)}.";
+    @error lib.throw-error(
+        '@function calc-rgb',
+        "Expected a valid color.",
+        #{meta.type-of($color)}
+    );
   }
 
   $red: color.channel($color, 'red', $space: rgb);
@@ -29,5 +34,8 @@
     @return ($red, $green, $blue);
   }
 
-  @error "@valantic-scss-utils -- 'calc-rgb': Unknown output format '#{$output}'. Supported formats are 'string' and 'list'.";
+  @error lib.throw-error(
+      '@function calc-rgb',
+      "Unknown output format '#{$output}'. Supported formats are 'string' and 'list'."
+  );
 }

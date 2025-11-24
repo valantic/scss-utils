@@ -2,6 +2,7 @@
 @use 'sass:map';
 @use 'sass:list';
 @use '../variables';
+@use '../lib';
 
 /// Creates a media query based on breakpoints or absolute values.
 ///
@@ -58,15 +59,30 @@
 
   // Error handling
   @if not($isValidUpValue) {
-    @error "media(): Invalid $up value '#{$up}'. Must be a number or a valid breakpoint key.";
+    @error lib.throw-error(
+        '@mixin media',
+        "Invalid $up value '#{$up}'. Must be a number or a valid breakpoint key."
+    );
   } @else if not($isValidDownValue) {
-    @error "media(): Invalid $down value '#{$down}'. Must be a number or a valid breakpoint key.";
+    @error lib.throw-error(
+        '@mixin media',
+        "Invalid $down value '#{$down}'. Must be a number or a valid breakpoint key."
+    );
   } @else if not($downIsBiggerThanUp) {
-    @error "media(): $up value '#{$upValue}' must be less than $down value '#{$downValue}'.";
+    @error lib.throw-error(
+        '@mixin media',
+        "$up value '#{$upValue}' must be less than $down value '#{$downValue}'."
+    );
   } @else if $up == null and $down == null and $media == all {
-    @error "media(): At least one of the parameters MUST be defined ($up, $down, $media).";
+    @error lib.throw-error(
+        '@mixin media',
+        "At least one of the parameters MUST be defined ($up, $down, $media)."
+    );
   } @else if $upValue == 0 and $down == null and $media == all {
-    @error "media(): The given selector would not define a meaningful scope and should be removed.";
+    @error lib.throw-error(
+        '@mixin media',
+        "The given selector would not define a meaningful scope and should be removed."
+    );
   } @else {
     // Construct query for min-width
     @if $up {

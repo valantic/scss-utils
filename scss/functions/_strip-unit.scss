@@ -1,5 +1,6 @@
 @use 'sass:math';
 @use 'sass:meta';
+@use '../lib';
 
 /// Removes the unit from a number.
 ///
@@ -14,7 +15,11 @@
 /// @return {number} Unitless number.
 @function strip-unit($number) {
   @if meta.type-of($number) != 'number' {
-    @error "@valantic-scss-utils -- 'strip-unit': Expected a number, but got #{meta.type-of($number)}.";
+    @error lib.throw-error(
+        '@function strip-unit',
+        "Expected a valid number.",
+        #{meta.type-of($number)}
+    );
   }
 
   @if math.is-unitless($number) {

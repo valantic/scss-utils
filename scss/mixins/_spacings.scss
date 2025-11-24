@@ -4,6 +4,7 @@
 @use '../variables';
 @use '../functions';
 @use './media';
+@use '../lib';
 
 /// Generates utility classes for spacing values across breakpoints.
 ///
@@ -18,11 +19,19 @@
 @mixin spacings($class, $property, $spacings: variables.$va-spacings, $breakpoints: variables.$va-breakpoints) {
   // Validate inputs
   @if meta.type-of($spacings) != 'list' {
-    @error "@valantic-scss-utils -- 'spacings': $spacings must be a list. Received: #{meta.type-of($spacings)}.";
+    @error lib.throw-error(
+        '@mixin spacings',
+        "'$spacings' must be a list.",
+        #{meta.type-of($spacings)}
+    );
   }
 
   @if meta.type-of($breakpoints) != 'map' {
-    @error "@valantic-scss-utils -- 'spacings': $breakpoints must be a map. Received: #{meta.type-of($breakpoints)}.";
+    @error lib.throw-error(
+        '@mixin spacings',
+        "'$breakpoints' must be a map.",
+        #{meta.type-of($breakpoints)}
+    );
   }
 
   // Generate base utility classes

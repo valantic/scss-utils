@@ -39,19 +39,31 @@
 
   // Validate inputs
   @if not $up and not $down {
-    @error lib.throw-error('Mixin container', "At least one of $up or $down must be defined.");
+    @error lib.throw-error(
+        '@mixin container',
+        "At least one of $up or $down must be defined."
+    );
   }
 
   @if $up and not $upValue {
-    @error lib.throw-error('Mixin container', "Invalid $up value '#{$up}'. Must be a number or a valid breakpoint key.");
+    @error lib.throw-error(
+        '@mixin container',
+        "Invalid $up value '#{$up}'. Must be a number or a valid breakpoint key."
+    );
   }
 
   @if $down and not $downValue {
-    @error lib.throw-error('Mixin container', "Invalid $down value '#{$down}'. Must be a number or a valid breakpoint key.");
+    @error lib.throw-error(
+        '@mixin container',
+        "Invalid $down value '#{$down}'. Must be a number or a valid breakpoint key."
+    );
   }
 
   @if $upValue and $downValue and $upValue >= $downValue {
-    @error lib.throw-error('Mixin container', "$up value '#{$upValue}' must be less than $down value '#{$downValue}'.");
+    @error lib.throw-error(
+        '@mixin container',
+        "$up value '#{$upValue}' must be less than $down value '#{$downValue}'."
+    );
   }
 
   // Build container query

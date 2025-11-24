@@ -1,6 +1,7 @@
 @use 'sass:list';
 @use 'sass:meta';
 @use '../variables';
+@use '../lib';
 
 /// Applies an SVG icon to an element as a background image or mask.
 ///
@@ -27,7 +28,11 @@
 @mixin icon($icon, $size: 24px 24px, $backgroundPosition: center center, $mask: true, $color: currentColor) {
   // Validate $icon
   @if meta.type-of($icon) != 'string' {
-    @error "@valantic-scss-utils -- 'icon()': $icon must be a string. Received: #{meta.type-of($icon)}.";
+    @error lib.throw-error(
+        '@mixin icon',
+        "'$icon' must be a string",
+        #{meta.type-of($icon)}
+    );
   }
 
   // Ensure $size is always a dual value

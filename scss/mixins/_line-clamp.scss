@@ -1,6 +1,7 @@
 @use 'sass:math';
 @use 'sass:meta';
 @use '../functions';
+@use '../lib';
 
 /// Truncates multi-line text using `-webkit-line-clamp`.
 ///
@@ -22,12 +23,20 @@
 @mixin line-clamp($clamp, $line-height: 1) {
   // Validate $clamp
   @if meta.type-of($clamp) != 'number' or functions.strip-unit($clamp) <= 0 or not math.is-unitless($clamp) {
-    @error "@valantic-scss-utils -- 'line-clamp()': $clamp must be a positive, unitless number. Received: #{$clamp}.";
+    @error lib.throw-error(
+        '@mixin line-clamp',
+        "'$clamp' must be a positive, unitless number.",
+        $clamp
+    );
   }
 
   // Validate $line-height
   @if meta.type-of($line-height) != 'number' or functions.strip-unit($line-height) <= 0 {
-    @error "@valantic-scss-utils -- 'line-clamp()': $line-height must be a positive number. Received: #{$line-height}.";
+    @error lib.throw-error(
+        '@mixin line-clamp',
+        "'$line-height' must be a positive number.",
+        $line-height
+    );
   }
 
   // Precompute stripped values
