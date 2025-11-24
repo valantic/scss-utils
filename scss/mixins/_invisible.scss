@@ -1,4 +1,3 @@
-////
 /// Hides elements visually while keeping them accessible to screen readers.
 ///
 /// This mixin uses techniques such as `clip-path`, `clip`, `overflow: hidden`, and `white-space: nowrap`
@@ -14,7 +13,6 @@
 ///   @include invisible;
 /// }
 /// ```
-////
 @mixin invisible {
   position: absolute;
   width: 1px;

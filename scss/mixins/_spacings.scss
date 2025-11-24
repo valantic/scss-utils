@@ -5,7 +5,6 @@
 @use '../functions';
 @use './media';
 
-////
 /// Generates utility classes for spacing values across breakpoints.
 ///
 /// - Loops through `$spacings` to create base utility classes.
@@ -16,7 +15,6 @@
 /// @param {string} $property The CSS property to assign (e.g., `margin`, `padding`).
 /// @param {list} [$spacings=variables.$va-spacings] The list of spacing values to generate classes for.
 /// @param {map} [$breakpoints=variables.$va-breakpoints] The map of breakpoints used for responsive classes.
-///
 @mixin spacings($class, $property, $spacings: variables.$va-spacings, $breakpoints: variables.$va-breakpoints) {
   // Validate inputs
   @if meta.type-of($spacings) != 'list' {

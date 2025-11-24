@@ -4,7 +4,6 @@
 @use '../variables';
 @use './media';
 
-////
 /// Converts a pixel value to a rem-based font size.
 ///
 /// @param {number} $size-value The target font size in pixels. Defaults to `16px`.
@@ -17,7 +16,6 @@
 ///   @include font-size(32px); // font-size: 2rem;
 /// }
 /// ```
-///
 @mixin font-size($size-value: 16px, $base-size: 16px) {
   $size: functions.strip-unit($size-value);
   $base: functions.strip-unit($base-size);
@@ -25,7 +23,6 @@
   font-size: (math.div($size, $base)) + rem;
 }
 
-////
 /// Retrieves a responsive font size based on a key from font size maps.
 ///
 /// This mixin dynamically assigns font sizes for `phone`, `tablet`, and `desktop`
@@ -47,7 +44,6 @@
 ///   @include font-size-by-map('h1');
 /// }
 /// ```
-///
 @mixin font-size-by-map($keyName: 'regular') {
   @if not map.has-key(variables.$va-font-size--phone, $keyName) {
     @error "@valantic-scss-utils -- 'font-size-by-map()': The key '#{$keyName}' does not exist in the phone font size map.";

@@ -1,4 +1,3 @@
-////
 /// Enables automatic text hyphenation and ensures proper word wrapping.
 ///
 /// - `hyphens: auto`: Enables browser-native hyphenation for supported languages.
@@ -16,7 +15,6 @@
 ///   @include hyphens;
 /// }
 /// ```
-////
 @mixin hyphens {
   word-wrap: break-word; // Legacy support for non-hyphens browsers.
   overflow-wrap: break-word; // Ensures text wraps cleanly across lines.

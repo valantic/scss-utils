@@ -3,7 +3,6 @@
 @use 'sass:list';
 @use '../variables';
 
-////
 /// Creates a media query based on breakpoints or absolute values.
 ///
 /// - `$up` defines the **minimum width** (inclusive).
@@ -33,7 +32,6 @@
 /// @include media(null, 'md') { ... } // Up to 1023px.
 /// @include media('lg', null) { ... } // From 1280px.
 /// ```
-////
 @mixin media($up: null, $down: null, $media: all, $breakpoints: variables.$va-breakpoints) {
   // Initialize query with media type
   $query: if($media == all, 'all', 'only #{$media}');

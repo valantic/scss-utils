@@ -1,7 +1,6 @@
 @use 'sass:math';
 @use 'sass:meta';
 
-////
 /// Removes the unit from a number.
 ///
 /// Supported input types:
@@ -11,8 +10,8 @@
 /// Throws an error for non-numeric inputs.
 ///
 /// @param {number} $number Length to remove the unit from.
-/// @return {number} Unitless number.
 ///
+/// @return {number} Unitless number.
 @function strip-unit($number) {
   @if meta.type-of($number) != 'number' {
     @error "@valantic-scss-utils -- 'strip-unit': Expected a number, but got #{meta.type-of($number)}.";

@@ -2,7 +2,6 @@
 @use './font-size';
 @use './line-height';
 
-////
 /// Sets font styles, including font-size, optional line-height, and optional font-weight.
 ///
 /// - Delegates font-size and line-height calculations to modular mixins (`font-size` and `line-height`).
@@ -27,7 +26,6 @@
 ///   @include font(14px, null, 300); // font-size: 0.875rem; font-weight: 300;
 /// }
 /// ```
-///
 @mixin font($font-size: 16px, $line-height: null, $font-weight: null) {
   // Validate $font-size
   @if meta.type-of($font-size) != 'number' {

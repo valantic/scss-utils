@@ -2,7 +2,6 @@
 @use 'sass:meta';
 @use '../functions';
 
-////
 /// Calculates a unitless `line-height` value based on the given pixel values for `$line-height` and `$font-size`.
 ///
 /// Ensures the ratio between the line height and font size is maintained for better typography scaling.
@@ -18,7 +17,6 @@
 /// @include line-height(1.5, 16px);  // Outputs: line-height: 0.09375;
 /// @include line-height();           // Outputs: line-height: 0.071875;
 /// ```
-////
 @mixin line-height($line-height: 1.15, $font-size: 16px) {
   @if meta.type-of($line-height) != 'number' {
     @error "@valantic-scss-utils -- 'line-height()': $line-height must be a number. Received: #{meta.type-of($line-height)}.";

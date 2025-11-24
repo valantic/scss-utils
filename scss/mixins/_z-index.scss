@@ -1,7 +1,6 @@
 @use 'sass:map';
 @use '../variables';
 
-////
 /// Sets the `z-index` based on a key from the `$va-z-index` map in `variables`.
 ///
 /// @param {string} $key The key to look up in the `$va-z-index` map.
@@ -19,7 +18,6 @@
 /// @include z-index('modal'); // z-index: 1000;
 /// @include z-index('invalid'); // Throws an error.
 /// ```
-////
 @mixin z-index($key) {
   @if not map.has-key(variables.$va-z-index, $key) {
     @error "@valantic-scss-utils -- 'z-index': The key '#{$key}' does not exist in the z-index map.";
