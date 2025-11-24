@@ -24,7 +24,9 @@
   @if meta.type-of($values) == 'number' {
     $values: ($values);
   } @else if meta.type-of($values) != 'list' {
+    @error 'yolo';
     @error lib.throw-error('Function calc-em', "$values must be a list or a single number. Received: #{meta.type-of($values)}.");
+    @error 'test';
   }
 
   $result: ();
