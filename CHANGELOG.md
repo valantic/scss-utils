@@ -2,6 +2,10 @@
 
 ## unreleased
 
+- [BUGFIX] Fixed container mixin.
+- [BUGFIX] Fixed header mixin.
+- [BUGFIX] Fixed sass error mixin.
+
 ## v0.0.3 - 2025-11-25
 
 - [BUGFIX] It is now possible to overwrite all variables in a project.

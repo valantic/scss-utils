@@ -9,7 +9,7 @@
 /// @param {string} $message The error message to display.
 ///
 /// @return An error string for the output.
-@function throw-error($function-name, $message, $wrong-value) {
+@function throw-error($function-name, $message, $wrong-value: null) {
   $errorPrefix: '🚨🚨🚨 ERROR: @valantic-scss-utils 🚨🚨🚨 ::: ';
 
   // Validate inputs
