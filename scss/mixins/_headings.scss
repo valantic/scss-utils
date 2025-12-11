@@ -47,13 +47,31 @@
 /// @deprecated
 /// Generate specific heading mixins for `h1` through `h6`.
 /// These mixins are backward-compatible with the original implementation.
-@each $heading in ('h1', 'h2', 'h3', 'h4', 'h5', 'h6') {
-  @mixin heading-#{$heading} {
-    @warn lib.throw-error(
-        '@mixin heading',
-        "DEPRECATED heading-#{$heading}() use heading('#{$heading}') instead"
-    );
+@mixin heading-deprecated($heading) {
+  @warn lib.throw-error(
+      '@mixin heading',
+      "DEPRECATED heading-#{$heading}() use heading('#{$heading}') instead",
+      "heading-#{$heading}()"
+  );
 
-    @include heading($heading);
-  }
+  @include heading($heading);
+}
+
+@mixin heading-h1 {
+  @include heading-deprecated('h1');
+}
+@mixin heading-h2 {
+  @include heading-deprecated('h2');
+}
+@mixin heading-h3 {
+  @include heading-deprecated('h3');
+}
+@mixin heading-h4 {
+  @include heading-deprecated('h4');
+}
+@mixin heading-h5 {
+  @include heading-deprecated('h5');
+}
+@mixin heading-h6 {
+  @include heading-deprecated('h6');
 }
