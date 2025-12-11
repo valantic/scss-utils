@@ -34,8 +34,17 @@
 /// ```
 @mixin container($up: null, $down: null, $breakpoints: variables.$va-breakpoints, $dimension: width) {
   // Pre-compute query values
-  $upValue: if (meta.type-of($up) == number, $up, map.get($breakpoints, $up));
-  $downValue: if (meta.type-of($down) == number, $down, map.get($breakpoints, $down));
+  // Assign values safely
+  $upValue: null;
+  $downValue: null;
+
+  @if $up != null {
+    $upValue: if(meta.type-of($up) == number, $up, map.get($breakpoints, $up));
+  }
+
+  @if $down != null {
+    $downValue: if(meta.type-of($down) == number, $down, map.get($breakpoints, $down));
+  }
 
   // Validate inputs
   @if not $up and not $down {
@@ -59,11 +68,15 @@
     );
   }
 
-  @if $upValue and $downValue and $upValue >= $downValue {
-    @error lib.throw-error(
-        '@mixin container',
-        "$up value '#{$upValue}' must be less than $down value '#{$downValue}'."
-    );
+  // Only compare if both are numbers
+  @if $upValue != null and $downValue != null {
+    @if $upValue >= $downValue {
+      @error lib.throw-error(
+          '@mixin container',
+          "$up value '#{$upValue}' must be less than $down value '#{$downValue}'.",
+          "$up: #{$up}, $down: #{$down}"
+      );
+    }
   }
 
   // Build container query
