@@ -2,6 +2,8 @@
 
 ## unreleased
 
+## v0.0.4 - 2025-12-11
+ 
 - [BUGFIX] Fixed container mixin.
 - [BUGFIX] Fixed header mixin.
 - [BUGFIX] Fixed sass error mixin.
