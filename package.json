@@ -1,6 +1,6 @@
 {
   "name": "@valantic/scss-utils",
-  "version": "0.0.4",
+  "version": "0.0.3",
   "description": "A set of reusable scss utils",
   "type": "module",
   "lastDependencyUpdate": "01.10.2025",
