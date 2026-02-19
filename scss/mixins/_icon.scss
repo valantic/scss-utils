@@ -43,8 +43,10 @@
 
   @if $mask == true {
     @supports (mask: no-repeat) {
+      /* stylelint-disable no-invalid-position-declaration */
       background: $color;
       mask: url('#{variables.$va-icon-base-path}##{$icon}') no-repeat $backgroundPosition / $calculatedSize;
+      /* stylelint-enable no-invalid-position-declaration */
     }
   }
 }

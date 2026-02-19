@@ -25,18 +25,40 @@ We suggest stylelint to be installed.
 
 ## Installation
 
-To install the SCSS utilities package, add it to your `package.json` like this:
+Add the package to your `package.json`:
 
 ```json
 "dependencies": {
-  "@valantic/scss-utils": "github:valantic/scss-utils#0.0.3"
-},
+  "@valantic/scss-utils": "^0.0.5"
+}
 ```
 
-And then run: 
+Then install:
 
 ```bash
-npm install @valantic/scss-utils
+npm install
+```
+
+## Usage
+
+This library uses the Sass module system. You can import variables, functions, and mixins separately:
+
+```scss
+@use '@valantic/scss-utils/variables' as v;
+@use '@valantic/scss-utils/functions' as f;
+@use '@valantic/scss-utils/mixins' as m;
+
+.card {
+  font-size: f.calc-em(16px);
+  color: v.$va-color-primary;
+  @include m.line-clamp(2);
+  @include m.container(sm, lg) {
+    background-color: v.$va-color-secondary;
+  }
+}
+
+// Optional: emit base element styles
+@use '@valantic/scss-utils/setup';
 ```
 
 ## License

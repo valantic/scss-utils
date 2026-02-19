@@ -10,4 +10,7 @@ export default {
       customSyntax: 'postcss-html',
     },
   ],
+  rules: {
+    "annotation-no-unknown": null
+  }
 };

@@ -2,6 +2,17 @@
 
 ## unreleased
 
+- [UPDATE] Updated scss, stylelint and package.json.
+- [BUGFIX] Fixed stylelint script path and fixed all issues.
+- [DOCS] Updated README file.
+
+## v0.0.5 - 2025-12-11
+
+- [ENHANCEMENT] Exposed `container` mixin through main `@valantic/scss-utils/mixins` entry.
+- [ENHANCEMENT] Added usage examples to README.
+- [BUGFIX] Fixed `lint:stylelint` script path in `package.json`.
+- [DOCS] Updated README installation examples to reference version 0.0.5.
+
 ## v0.0.4 - 2025-12-11
  
 - [BUGFIX] Fixed container mixin.

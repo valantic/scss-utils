@@ -1,8 +1,8 @@
-//@use '../functions';
+// @use '../functions';
 //
-//:root,
-//.use-theme--default,
-//[data-use-theme='DEFAULT'] {
+// :root,
+// .use-theme--default,
+// [data-use-theme='DEFAULT'] {
 //  --theme-font-family--headline: 'Source Sans Pro', 'Trebuchet MS', Arial, sans-serif;
 //  --theme-font-family--text: 'Source Sans Pro', 'Trebuchet MS', Arial, sans-serif;
 //  --theme-font-color--headline: #222222;
@@ -67,4 +67,4 @@
 //  --theme-color-grayscale--800-rgb: #{functions.calc-rgb(#cccccc)};
 //  --theme-color-grayscale--900-rgb: #{functions.calc-rgb(#e6e6e6)};
 //  --theme-color-grayscale--1000-rgb: #{functions.calc-rgb(#ffffff)};
-//}
+// }

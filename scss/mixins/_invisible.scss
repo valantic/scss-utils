@@ -5,7 +5,6 @@
 ///
 /// **Browser Support:**
 /// - The `clip-path` property is supported in modern browsers.
-/// - The `clip` property is included for backward compatibility with older browsers.
 ///
 /// @example
 /// ```scss
@@ -19,6 +18,5 @@
   height: 1px;
   overflow: hidden;
   white-space: nowrap;
-  clip: rect(0 0 0 0); // Deprecated but retained for backward compatibility
   clip-path: inset(50%);
 }
