@@ -101,6 +101,7 @@
     }
 
     // Output the media query
+    /* stylelint-disable-next-line media-query-no-invalid */
     @media #{$query} {
       @content;
     }

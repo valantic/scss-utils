@@ -40,7 +40,6 @@
   }
 
   @extend %heading-base;
-
   @include font.font-size-by-map($level);
 }
 
@@ -53,25 +52,29 @@
       "DEPRECATED heading-#{$heading}() use heading('#{$heading}') instead",
       "heading-#{$heading}()"
   );
-
   @include heading($heading);
 }
 
 @mixin heading-h1 {
   @include heading-deprecated('h1');
 }
+
 @mixin heading-h2 {
   @include heading-deprecated('h2');
 }
+
 @mixin heading-h3 {
   @include heading-deprecated('h3');
 }
+
 @mixin heading-h4 {
   @include heading-deprecated('h4');
 }
+
 @mixin heading-h5 {
   @include heading-deprecated('h5');
 }
+
 @mixin heading-h6 {
   @include heading-deprecated('h6');
 }

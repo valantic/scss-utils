@@ -81,14 +81,17 @@
 
   // Build container query
   $query: '';
+
   @if $up {
     $query: $query + " (min-#{$dimension}: #{$upValue})";
   }
+
   @if $down {
     $query: $query + if (meta.type-of($down) == number, " (max-#{$dimension}: #{$downValue})", " (max-#{$dimension}: #{$downValue - 1px})");
   }
 
   // Apply container query and content
+  /* stylelint-disable-next-line at-rule-prelude-no-invalid, container-name-pattern */
   @container #{$query} {
     @content;
   }

@@ -10,16 +10,17 @@
     "release:major": "npm version major -m 'Release %s' && git push --follow-tags",
     "clean:caches": "rm -rf .stylelintcache node_modules/.cache",
     "fix:stylelint": "npm run lint:stylelint -- --cache=false --config .stylelintrc.fix.js --fix",
+    "test": "npm run lint",
     "lint": "npm run lint:stylelint",
-    "lint:stylelint": "stylelint 'src/**/*.?(vue|scss)'"
+    "lint:stylelint": "stylelint 'scss/**/*.scss'"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:valantic/scss-utils.git"
   },
   "engines": {
-    "node": ">=22 <25",
-    "npm": ">=10 <12"
+    "node": ">=22",
+    "npm": ">=10"
   },
   "keywords": [
     "scss",
@@ -32,8 +33,8 @@
   },
   "homepage": "https://github.com/valantic/scss-utils",
   "devDependencies": {
-    "sass": "~1.93.2",
-    "stylelint": "~16.24.0",
-    "stylelint-config-valantic": "~9.1.0"
+    "sass": "~1.97.3",
+    "stylelint": "~17.4.0",
+    "stylelint-config-valantic": "~10.1.0"
   }
 }
