@@ -34,7 +34,7 @@
   "homepage": "https://github.com/valantic/scss-utils",
   "devDependencies": {
     "sass": "~1.97.3",
-    "stylelint": "~17.3.0",
-    "stylelint-config-valantic": "~10.0.0"
+    "stylelint": "~17.4.0",
+    "stylelint-config-valantic": "~10.1.0"
   }
 }

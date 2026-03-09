@@ -2,6 +2,8 @@
 
 ## unreleased
 
+## v1.0.0 - 2026-03-09
+
 - [UPDATE] Updated scss, stylelint and package.json.
 - [BUGFIX] Fixed stylelint script path and fixed all issues.
 - [DOCS] Updated README file.
