@@ -17,9 +17,9 @@ We suggest stylelint to be installed.
 
 ```json
   "devDependencies": {
-    "sass": "~1.93.2",
-    "stylelint": "~16.24.0",
-    "stylelint-config-valantic": "~9.1.0"
+    "sass": "~1.97.3",
+    "stylelint": "~17.4.0",
+    "stylelint-config-valantic": "~10.1.0"
   }
 ```
 
@@ -29,14 +29,8 @@ Add the package to your `package.json`:
 
 ```json
 "dependencies": {
-  "@valantic/scss-utils": "^0.0.5"
+  "@valantic/scss-utils": "github:valantic/scss-utils#v1.0.0",
 }
-```
-
-Then install:
-
-```bash
-npm install
 ```
 
 ## Usage
