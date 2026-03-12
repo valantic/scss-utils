@@ -39,11 +39,19 @@
   $downValue: null;
 
   @if $up != null {
-    $upValue: if(meta.type-of($up) == number, $up, map.get($breakpoints, $up));
+    @if meta.type-of($up) == number {
+      $upValue: $up;
+    } @else {
+      $upValue: map.get($breakpoints, $up);
+    }
   }
 
   @if $down != null {
-    $downValue: if(meta.type-of($down) == number, $down, map.get($breakpoints, $down));
+    @if meta.type-of($down) == number {
+      $downValue: $down;
+    } @else {
+      $downValue: map.get($breakpoints, $down);
+    }
   }
 
   // Validate inputs
@@ -87,7 +95,11 @@
   }
 
   @if $down {
-    $query: $query + if (meta.type-of($down) == number, " (max-#{$dimension}: #{$downValue})", " (max-#{$dimension}: #{$downValue - 1px})");
+    @if meta.type-of($down) == number {
+      $query: $query + " (max-#{$dimension}: #{$downValue})";
+    } @else {
+      $query: $query + " (max-#{$dimension}: #{$downValue - 1px})";
+    }
   }
 
   // Apply container query and content

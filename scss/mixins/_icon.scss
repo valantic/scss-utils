@@ -36,7 +36,12 @@
   }
 
   // Ensure $size is always a dual value
-  $calculatedSize: if(meta.type-of($size) == 'number', $size $size, $size);
+  $calculatedSize: null;
+  @if meta.type-of($size) == 'number' {
+    $calculatedSize: $size $size;
+  } @else {
+    $calculatedSize: $size;
+  }
 
   // Legacy support. No color applied.
   background: url('#{variables.$va-icon-base-path}##{$icon}') no-repeat $backgroundPosition / $calculatedSize;

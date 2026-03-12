@@ -35,26 +35,48 @@
 /// ```
 @mixin media($up: null, $down: null, $media: all, $breakpoints: variables.$va-breakpoints) {
   // Initialize query with media type
-  $query: if($media == all, 'all', 'only #{$media}');
+  $query: '';
+  @if $media == all {
+    $query: 'all';
+  } @else {
+    $query: 'only #{$media}';
+  }
   $indexOfUpBreakpoint: list.index(map.keys($breakpoints), $up);
   $indexOfDownBreakpoint: list.index(map.keys($breakpoints), $down);
   $isUpNumber: meta.type-of($up) == number;
   $isDownNumber: meta.type-of($down) == number;
 
   // Determine the next breakpoint key for $upKey (if $down is not a number and $up can be derived from $down)
-  $upKey: if(
-      $down and not($isDownNumber) and $indexOfDownBreakpoint and $indexOfDownBreakpoint < list.length($breakpoints),
-      list.nth(map.keys($breakpoints), $indexOfDownBreakpoint + 1),
-      null
-  );
+  $upKey: null;
+  @if $down and not($isDownNumber) and $indexOfDownBreakpoint and $indexOfDownBreakpoint < list.length($breakpoints) {
+    $upKey: list.nth(map.keys($breakpoints), $indexOfDownBreakpoint + 1);
+  }
 
   // Calculate $upValue and $downValue
-  $upValue: if($isUpNumber, $up, false) or map.get($breakpoints, $up);
-  $downValue: if($isDownNumber, $down, false) or ($upKey and map.get($breakpoints, $upKey));
+  $upValue: null;
+  @if $isUpNumber {
+    $upValue: $up;
+  } @else {
+    $upValue: map.get($breakpoints, $up);
+  }
+
+  $downValue: null;
+  @if $isDownNumber {
+    $downValue: $down;
+  } @else if $upKey {
+    $downValue: map.get($breakpoints, $upKey);
+  }
 
   // Validation flags
-  $isValidUpValue: if(not($up) or ($up and $upValue), true, false);
-  $isValidDownValue: if(not($down) or ($down and $downValue and $downValue > 0), true, false);
+  $isValidUpValue: false;
+  @if not($up) or ($up and $upValue) {
+    $isValidUpValue: true;
+  }
+
+  $isValidDownValue: false;
+  @if not($down) or ($down and $downValue and $downValue > 0) {
+    $isValidDownValue: true;
+  }
   $downIsBiggerThanUp: (not($up) or not($down)) or ($isValidUpValue and $isValidDownValue and $upValue < $downValue);
 
   // Error handling
