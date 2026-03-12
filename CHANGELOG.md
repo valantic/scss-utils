@@ -2,6 +2,8 @@
 
 ## unreleased
 
+- [ENHANCEMENT] Updated to sass `1.98.0`
+
 ## v1.0.0 - 2026-03-09
 
 - [UPDATE] Updated scss, stylelint and package.json.
@@ -16,7 +18,7 @@
 - [DOCS] Updated README installation examples to reference version 0.0.5.
 
 ## v0.0.4 - 2025-12-11
- 
+
 - [BUGFIX] Fixed container mixin.
 - [BUGFIX] Fixed header mixin.
 - [BUGFIX] Fixed sass error mixin.
