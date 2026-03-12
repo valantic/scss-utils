@@ -36,5 +36,8 @@
     "sass": "~1.98.0",
     "stylelint": "~17.4.0",
     "stylelint-config-valantic": "~10.1.0"
-  }
+  },
+  "files": [
+    "scss"
+  ]
 }
