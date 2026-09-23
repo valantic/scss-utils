@@ -2,6 +2,11 @@
 
 ## unreleased
 
+- [DOCS] Added `AGENTS.md` documenting the package structure and conventions, with `CLAUDE.md` reduced to a pointer to
+  it, matching the pattern used in `frontend-utils`.
+- [DOCS] Added a Documentation section to `AGENTS.md` requiring feature docs to live in this repo's own `docs/` folder
+  (indexed by `docs/README.md`), separate from the workspace-level `docs/`.
+
 ## v1.1.0
 
 - [ENHANCEMENT] Updated to sass `1.98.0`
