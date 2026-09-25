@@ -1,5 +1,7 @@
 <div align="center">
 
+![valantic scss-utils banner](.github/assets/banner.jpeg)
+
 # valantic SCSS Utils
 
 **A set of reusable scss utils.**
@@ -37,7 +39,7 @@ Add the package to your `package.json`:
 
 ```json
 "dependencies": {
-  "@valantic/scss-utils": "github:valantic/scss-utils#v1.1.0",
+  "@valantic/scss-utils": "github:valantic/scss-utils#v1.1.0"
 }
 ```
 
@@ -57,9 +59,9 @@ This library uses the Sass module system. You can import variables, functions, a
 .card {
   font-size: functions.calc-em(16px);
   color: variables.$va-color-primary;
-  
+
   @include mixins.line-clamp(2);
-  
+
   @include mixins.container(sm, lg) {
     background-color: variables.$va-color-secondary;
   }
@@ -75,7 +77,8 @@ This library uses the Sass module system. You can import variables, functions, a
 
 ## from valantic - with love
 
-Built and maintained by [valantic](https://www.valantic.com/en/careers/) — we're hiring, check out our [open positions](https://www.valantic.com/en/careers/).
+Built and maintained by [valantic](https://www.valantic.com/en/careers/) — we're hiring, check out
+our [open positions](https://www.valantic.com/en/careers/).
 
 ## License
 
