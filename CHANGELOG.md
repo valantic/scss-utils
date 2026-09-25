@@ -2,6 +2,8 @@
 
 ## unreleased
 
+- [CI] Added `.github/workflows/test.yml` (previously missing), a "CI Test" workflow running on
+  `actions/checkout@v7` / `actions/setup-node@v7` with Node 25.
 - [DOCS] Streamlined `.github/PULL_REQUEST_TEMPLATE.md` by removing the obsolete checklist sections.
 - [DOCS] Added `AGENTS.md` documenting the package structure and conventions, with `CLAUDE.md` reduced to a pointer to
   it, matching the pattern used in `frontend-utils`.
