@@ -2,6 +2,9 @@
 
 ## unreleased
 
+- [CHORE] Bumped `engines` to `node": ">=22 <26"` / `"npm": ">=10 <12"` (was `node">=22"` / `npm">=10"`) to allow
+  Node 25. Updated `.nvmrc` from `24` to `25`. Added `min-release-age=7` and `ignore-scripts=true` to `.npmrc`.
+
 - [CI] Added `.github/workflows/test.yml` (previously missing), a "CI Test" workflow running on
   `actions/checkout@v7` / `actions/setup-node@v7` with Node 25.
 - [DOCS] Streamlined `.github/PULL_REQUEST_TEMPLATE.md` by removing the obsolete checklist sections.
