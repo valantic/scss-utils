@@ -71,6 +71,10 @@ This library uses the Sass module system. You can import variables, functions, a
 @use '@valantic/scss-utils/setup';
 ```
 
+## Contributing
+
+How to contribute and how releases are made is described in [CONTRIBUTING.md](./CONTRIBUTING.md).
+
 ---
 
 <div align="center">

@@ -2,6 +2,13 @@
 
 ## unreleased
 
+- [docs] Added a `## Contributing` section to `README.md` linking `CONTRIBUTING.md` (contribution and release steps).
+- [build] `npm run release[:minor|:major]` now runs the shared `scripts/release.mjs` instead of plain `npm version`. It
+  releases from an up-to-date `main` only, aborts on uncommitted changes or an empty `## unreleased` section, renames
+  that section to `## vX.Y.Z`, updates the README version pin, and commits, tags (`vX.Y.Z`, annotated) and pushes.
+- [ci] Added the `Release` workflow (`.github/workflows/release.yml`): pushing a `vX.Y.Z` tag creates the GitHub
+  release, using that version's `CHANGELOG.md` section as release notes. It fails if the section is empty.
+- [docs] Added `CONTRIBUTING.md` describing the release process.
 - [docs] Adopted the shared shared-frontend changelog convention (`# Changelog` title, `unreleased` / `vX.Y.Z`
   headings, `[feat]`/`[fix]`/… prefixes, `### Breaking Changes` with migration notes), documented in `AGENTS.md`.
   Unreleased entries were moved to the new prefixes; released entries are unchanged.
