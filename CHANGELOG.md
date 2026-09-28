@@ -2,6 +2,11 @@
 
 ## unreleased
 
+- [docs] `AGENTS.md`: feature docs are now grouped by topic (typography, layout, colors & theming, …) instead of one
+  file per partial.
+- [docs] Added grouped feature docs under `docs/` (`typography`, `layout`, `colors-and-theming`, `functions`,
+  `variables`, `setup`), indexed by `docs/README.md`, covering every public mixin, function, and variable group
+  with parameters, defaults, and usage examples.
 - [ci] Aligned `.github/workflows/test.yml` with the other shared-frontend repos: job `test`, step "Run tests"
   (the old label claimed checks that don't run here), Node version read from `.nvmrc`, token limited to
   `contents: read`.

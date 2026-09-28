@@ -97,9 +97,10 @@ These rules are identical in every valantic shared-frontend repo.
 This repo keeps its own feature docs in a `docs/` folder (with an index at `docs/README.md`) — this is separate from
 the workspace-level `docs/` at the root of `valantic/` and must not be skipped in favor of it.
 
-- Every mixin/function/variable group (e.g. `container`, `typography`, `spacing`) and cross-cutting feature (e.g.
-  theming via `themes/`) gets one Markdown file under `docs/` describing its purpose, public members, and usage
-  examples beyond what the SassDoc `///` comments cover.
+- Docs are grouped by topic, not one file per partial (e.g. typography, layout, colors & theming, functions,
+  variables, setup). Every public mixin, function and variable group is covered by exactly one of these docs, which
+  describes its purpose, public members, and usage examples beyond what the SassDoc `///` comments cover. A new
+  mixin/function/variable group goes into the doc of its topic; only a new topic gets a new file.
 - When adding, changing, or removing a mixin/function/variable group, update the matching doc in the same change —
   do not defer it to a follow-up task.
 - `docs/README.md` is the index; add a one-line link to every new doc file there.
