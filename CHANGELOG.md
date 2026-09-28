@@ -2,6 +2,7 @@
 
 ## unreleased
 
+- [chore] Added the missing `LICENSE` file (MIT, as already declared in `package.json` and the README).
 - [docs] Restructured `AGENTS.md` to the shared outline and added the shared `## Working rules` section (git rules, no
   release/publish or dependency changes without approval, engineering priorities, `npm test` before finishing).
 - [docs] Completed `CONTRIBUTING.md` with the shared outline (Getting started / Developing / Changelog / Releasing).
