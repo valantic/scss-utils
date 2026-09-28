@@ -45,8 +45,29 @@ directory, e.g. `@use '@valantic/scss-utils/variables';`.
   needed (`@use '@valantic/scss-utils/variables';`, `.../functions`, `.../mixins`), then reference members via the
   module namespace (`variables.$va-color-primary`, `functions.calc-em(16px)`, `@include mixins.line-clamp(2)`).
   `@use '@valantic/scss-utils/setup';` is optional and the only entry that emits actual CSS output.
-- `CHANGELOG.md` documents its own entry-prefix convention (`[ENHANCEMENT]`, `[BUGFIX]`, `[UPDATE]`, `[DOCS]`, etc.
-  under an `## unreleased` heading) — check it before adding an entry.
+
+## Changelog (required for every task)
+
+`CHANGELOG.md` follows the convention shared by all valantic shared-frontend repos.
+
+- Every change that alters behavior, fixes a bug, or adds/removes something consumers can see gets one entry under
+  `## unreleased` in the same change — do not defer it to a follow-up task.
+- Format: `- [type] Description.` — one entry per logical change, kept as a flat list (no "Added"/"Fixed" category
+  subheadings), so each entry stays self-contained and merge conflicts can be resolved line by line.
+- Allowed prefixes ([Conventional Commits](https://www.conventionalcommits.org/) types): `[feat]`, `[fix]`,
+  `[refactor]`, `[perf]`, `[docs]`, `[test]`, `[build]`, `[ci]`, `[chore]`, `[revert]`. Older prefixes in released
+  sections (`[ENHANCEMENT]`, `(Change)`, …) are history — do not reuse them and do not rewrite old entries.
+- Write the description so it is understandable without the diff: name the affected module and the effect for
+  consumers.
+- Breaking changes are grouped under a `### Breaking Changes` subheading placed directly under `## unreleased`, above
+  the regular entries. They keep their prefix and must end with a **Migration:** sentence stating what consumers
+  have to do.
+- A change is breaking if it removes/renames a public variable, mixin, function or entry file, changes a mixin's or
+  function's parameters, changes the meaning of a `!default` value, or changes CSS emitted by `setup` that consumers
+  could rely on.
+- Headings: title `# Changelog`, unreleased section `## unreleased` (exact, lowercase — release tooling matches it
+  literally), released sections `## vX.Y.Z`. Only the unreleased section is edited; released sections stay as they
+  are.
 
 ## Documentation
 
