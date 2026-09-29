@@ -2,6 +2,11 @@
 
 ## unreleased
 
+- [fix] `.editorconfig`: removed a stray space in the `[{*.js, *.ts}]` glob (`[{*.js,*.ts}]`) that prevented it from
+  matching `*.ts` files.
+- [fix] `generate-vuln-report.py`: `worst_severity()` no longer raises `ValueError` and aborts the report step when
+  every vulnerability for a package has a severity outside `SEVERITIES` — it now falls back to the lowest rank.
+
 - [docs] `AGENTS.md`: feature docs are now grouped by topic (typography, layout, colors & theming, …) instead of one
   file per partial.
 - [docs] Added grouped feature docs under `docs/` (`typography`, `layout`, `colors-and-theming`, `functions`,
