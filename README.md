@@ -39,7 +39,7 @@ Add the package to your `package.json`:
 
 ```json
 "dependencies": {
-  "@valantic/scss-utils": "github:valantic/scss-utils#v1.1.0"
+  "@valantic/scss-utils": "github:valantic/scss-utils#v1.2.0"
 }
 ```
 
