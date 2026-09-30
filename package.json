@@ -1,43 +1,43 @@
 {
   "name": "@valantic/scss-utils",
-  "version": "1.1.0",
   "description": "A set of reusable scss utils",
-  "type": "module",
+  "author": "valantic CEC",
+  "license": "MIT",
+  "version": "1.1.0",
   "lastDependencyUpdate": "12.03.2026",
+  "type": "module",
+  "engines": {
+    "node": ">=22 <26",
+    "npm": ">=10 <12"
+  },
   "scripts": {
-    "release": "npm version patch -m 'Release %s' && git push --follow-tags",
-    "release:minor": "npm version minor -m 'Release %s' && git push --follow-tags",
-    "release:major": "npm version major -m 'Release %s' && git push --follow-tags",
+    "release": "node scripts/release.mjs patch",
+    "release:minor": "node scripts/release.mjs minor",
+    "release:major": "node scripts/release.mjs major",
     "clean:caches": "rm -rf .stylelintcache node_modules/.cache",
     "fix:stylelint": "npm run lint:stylelint -- --cache=false --config .stylelintrc.fix.js --fix",
     "test": "npm run lint",
     "lint": "npm run lint:stylelint",
     "lint:stylelint": "stylelint 'scss/**/*.scss'"
   },
+  "devDependencies": {
+    "sass": "~1.98.0",
+    "stylelint": "~17.4.0",
+    "stylelint-config-valantic": "~10.1.1"
+  },
+  "files": [
+    "scss"
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com:valantic/scss-utils.git"
-  },
-  "engines": {
-    "node": ">=22",
-    "npm": ">=10"
   },
   "keywords": [
     "scss",
     "valantic"
   ],
-  "author": "valantic CEC",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/valantic/scss-utils/issues"
   },
-  "homepage": "https://github.com/valantic/scss-utils",
-  "devDependencies": {
-    "sass": "~1.98.0",
-    "stylelint": "~17.4.0",
-    "stylelint-config-valantic": "~10.1.0"
-  },
-  "files": [
-    "scss"
-  ]
+  "homepage": "https://github.com/valantic/scss-utils"
 }

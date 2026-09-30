@@ -36,11 +36,13 @@
 @mixin media($up: null, $down: null, $media: all, $breakpoints: variables.$va-breakpoints) {
   // Initialize query with media type
   $query: '';
+
   @if $media == all {
     $query: 'all';
   } @else {
     $query: 'only #{$media}';
   }
+
   $indexOfUpBreakpoint: list.index(map.keys($breakpoints), $up);
   $indexOfDownBreakpoint: list.index(map.keys($breakpoints), $down);
   $isUpNumber: meta.type-of($up) == number;
@@ -48,12 +50,14 @@
 
   // Determine the next breakpoint key for $upKey (if $down is not a number and $up can be derived from $down)
   $upKey: null;
+
   @if $down and not($isDownNumber) and $indexOfDownBreakpoint and $indexOfDownBreakpoint < list.length($breakpoints) {
     $upKey: list.nth(map.keys($breakpoints), $indexOfDownBreakpoint + 1);
   }
 
   // Calculate $upValue and $downValue
   $upValue: null;
+
   @if $isUpNumber {
     $upValue: $up;
   } @else {
@@ -61,6 +65,7 @@
   }
 
   $downValue: null;
+
   @if $isDownNumber {
     $downValue: $down;
   } @else if $upKey {
@@ -69,11 +74,13 @@
 
   // Validation flags
   $isValidUpValue: false;
+
   @if not($up) or ($up and $upValue) {
     $isValidUpValue: true;
   }
 
   $isValidDownValue: false;
+
   @if not($down) or ($down and $downValue and $downValue > 0) {
     $isValidDownValue: true;
   }
@@ -82,28 +89,28 @@
   // Error handling
   @if not($isValidUpValue) {
     @error lib.throw-error(
-        '@mixin media',
-        "Invalid $up value '#{$up}'. Must be a number or a valid breakpoint key."
+      '@mixin media',
+      "Invalid $up value '#{$up}'. Must be a number or a valid breakpoint key."
     );
   } @else if not($isValidDownValue) {
     @error lib.throw-error(
-        '@mixin media',
-        "Invalid $down value '#{$down}'. Must be a number or a valid breakpoint key."
+      '@mixin media',
+      "Invalid $down value '#{$down}'. Must be a number or a valid breakpoint key."
     );
   } @else if not($downIsBiggerThanUp) {
     @error lib.throw-error(
-        '@mixin media',
-        "$up value '#{$upValue}' must be less than $down value '#{$downValue}'."
+      '@mixin media',
+      "$up value '#{$upValue}' must be less than $down value '#{$downValue}'."
     );
   } @else if $up == null and $down == null and $media == all {
     @error lib.throw-error(
-        '@mixin media',
-        "At least one of the parameters MUST be defined ($up, $down, $media)."
+      '@mixin media',
+      "At least one of the parameters MUST be defined ($up, $down, $media)."
     );
   } @else if $upValue == 0 and $down == null and $media == all {
     @error lib.throw-error(
-        '@mixin media',
-        "The given selector would not define a meaningful scope and should be removed."
+      '@mixin media',
+      "The given selector would not define a meaningful scope and should be removed."
     );
   } @else {
     // Construct query for min-width
