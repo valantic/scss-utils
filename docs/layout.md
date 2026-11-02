@@ -1,7 +1,7 @@
 # Layout, spacing, and visual utilities
 
 Container/media query helpers, the spacing scale and its utility-class generator, the z-index registry, and small
-visual-utility mixins (`invisible`, `icon`). Entry points: `@use '@valantic/scss-utils/mixins';` and
+visual-utility mixins (`invisible`, `hover`, `icon`). Entry points: `@use '@valantic/scss-utils/mixins';` and
 `@use '@valantic/scss-utils/variables';`.
 
 ## Breakpoints (`scss/variables/_breakpoints.scss`)
@@ -146,6 +146,23 @@ screen-reader-only pattern.
 ```
 
 `_globals.scss` (see [setup.md](./setup.md)) exposes this as a ready-to-use `.invisible` class.
+
+## `hover()`
+
+No parameters, takes a content block. Applies the styles only on devices whose primary input can hover
+(`@media (hover: hover) { &:hover { ... } }`), so touch devices don't get sticky hover states.
+
+```scss
+@use '@valantic/scss-utils/mixins';
+
+.teaser {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+
+  @include mixins.hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  }
+}
+```
 
 ## `icon($icon, $size: 24px 24px, $backgroundPosition: center center, $mask: true, $color: currentColor)`
 

@@ -22,7 +22,7 @@ entries that actually emit CSS — see [setup.md](./setup.md).
 - [typography.md](./typography.md) — font, font-size, headings, hyphens, line-height, line-clamp mixins, and the
   font variables
 - [layout.md](./layout.md) — container/media queries, spacing scale and utility classes, z-index registry,
-  invisible, icon
+  invisible, hover, icon
 - [colors-and-theming.md](./colors-and-theming.md) — color variables and how they resolve to CSS custom properties
   via `themes/`
 - [functions.md](./functions.md) — `calc-em`, `strip-unit`
