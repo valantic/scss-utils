@@ -14,6 +14,7 @@
 /// ```
 @mixin hover {
   @media (hover: hover) {
+    // stylelint-disable-next-line nesting-selector-no-missing-scoping-root
     &:hover {
       @content;
     }
