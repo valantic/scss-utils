@@ -1,0 +1,22 @@
+/// Applies hover styles only on devices whose primary input can hover (mouse, trackpad).
+///
+/// Wraps the content in `@media (hover: hover) { &:hover { ... } }`, so touch devices don't get sticky hover states.
+///
+/// @example
+/// ```scss
+/// .teaser {
+///   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+///
+///   @include hover {
+///     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+///   }
+/// }
+/// ```
+@mixin hover {
+  @media (hover: hover) {
+    // stylelint-disable-next-line nesting-selector-no-missing-scoping-root
+    &:hover {
+      @content;
+    }
+  }
+}

@@ -2,6 +2,8 @@
 
 ## unreleased
 
+- [feat] `mixins.hover`: new mixin that wraps styles in `@media (hover: hover) { &:hover { ... } }` so hover effects only apply on hover-capable devices.
+
 ## v1.2.0
 
 - [chore] `scripts/release.mjs`: dropped the temporary `master` fallback from `RELEASE_BRANCHES` now that
