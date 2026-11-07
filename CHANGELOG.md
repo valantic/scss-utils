@@ -2,6 +2,8 @@
 
 ## unreleased
 
+## v1.2.1
+
 - [feat] `mixins.hover`: new mixin that wraps styles in `@media (hover: hover) { &:hover { ... } }` so hover effects only apply on hover-capable devices.
 
 ## v1.2.0
