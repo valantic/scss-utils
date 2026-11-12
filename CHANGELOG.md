@@ -2,6 +2,9 @@
 
 ## unreleased
 
+- [build] `npm run release` now asks which release type (patch, minor, major) to make; `release:patch` added as the
+  non-interactive variant.
+
 ## v1.2.1
 
 - [feat] `mixins.hover`: new mixin that wraps styles in `@media (hover: hover) { &:hover { ... } }` so hover effects only apply on hover-capable devices.
